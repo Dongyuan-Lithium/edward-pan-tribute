@@ -19,6 +19,7 @@
             --dark: #0a0a0a;
             --darker: #050505;
             --phoenix: #ff6b35;
+            --evil-purple: #8b00ff;
         }
 
         body {
@@ -48,7 +49,6 @@
             50% { opacity: 0.8; }
         }
 
-        /* Sun rays animation */
         .sun-rays {
             position: fixed;
             top: 50%;
@@ -255,6 +255,124 @@
             max-width: 600px;
         }
 
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Villain Section */
+        .villain-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, rgba(139, 0, 255, 0.1) 0%, rgba(0,0,0,0.8) 50%, rgba(139, 0, 255, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .villain-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(139, 0, 255, 0.2) 0%, transparent 60%);
+            animation: evil-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes evil-pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .villain-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .villain-image-container {
+            position: relative;
+        }
+
+        .villain-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(139, 0, 255, 0.4) 0%, rgba(255, 0, 0, 0.2) 50%, transparent 70%);
+            animation: villain-pulse 2s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes villain-pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .villain-image {
+            width: 100%;
+            max-width: 500px;
+            border: 4px solid var(--evil-purple);
+            box-shadow: 0 0 60px rgba(139, 0, 255, 0.5), 0 0 120px rgba(255, 0, 0, 0.3);
+        }
+
+        .villain-content {
+            padding: 2rem;
+        }
+
+        .villain-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--red);
+            color: var(--red);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            background: rgba(196, 30, 58, 0.2);
+        }
+
+        .villain-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--evil-purple);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(139, 0, 255, 0.5);
+        }
+
+        .villain-subtitle {
+            font-size: 1.5rem;
+            color: var(--red);
+            margin-bottom: 2rem;
+        }
+
+        .villain-desc {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .villain-desc p {
+            margin-bottom: 1.5rem;
+        }
+
+        .villain-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--evil-purple);
+            border-left: 3px solid var(--evil-purple);
+            padding-left: 1.5rem;
+            margin-top: 2rem;
+        }
+
         /* The Story Section */
         .story {
             padding: 8rem 2rem;
@@ -289,6 +407,11 @@
             background: rgba(255,255,255,0.02);
         }
 
+        .chapter.dark-chapter {
+            border-left-color: var(--evil-purple);
+            background: rgba(139, 0, 255, 0.05);
+        }
+
         .chapter-number {
             font-family: 'Playfair Display', serif;
             font-size: 1rem;
@@ -297,11 +420,19 @@
             margin-bottom: 0.5rem;
         }
 
+        .dark-chapter .chapter-number {
+            color: var(--evil-purple);
+        }
+
         .chapter-title {
             font-family: 'Noto Serif SC', serif;
             font-size: 2rem;
             color: var(--gold);
             margin-bottom: 1.5rem;
+        }
+
+        .dark-chapter .chapter-title {
+            color: var(--evil-purple);
         }
 
         .chapter-content {
@@ -321,7 +452,7 @@
         }
 
         .villain {
-            color: var(--red);
+            color: var(--evil-purple);
             font-weight: 600;
         }
 
@@ -356,7 +487,7 @@
         }
 
         .timeline-item.dark-era {
-            border-left: 2px solid rgba(196, 30, 58, 0.6);
+            border-left: 2px solid var(--evil-purple);
         }
 
         .timeline-item.phoenix-era {
@@ -380,8 +511,8 @@
         }
 
         .timeline-item.dark-era::before {
-            background: var(--red);
-            box-shadow: 0 0 30px rgba(196, 30, 58, 0.6);
+            background: var(--evil-purple);
+            box-shadow: 0 0 30px rgba(139, 0, 255, 0.8);
         }
 
         .timeline-item.phoenix-era::before {
@@ -397,7 +528,7 @@
         }
 
         .timeline-item.dark-era .timeline-year {
-            color: var(--red);
+            color: var(--evil-purple);
         }
 
         .timeline-item.phoenix-era .timeline-year {
@@ -415,9 +546,9 @@
         }
 
         .timeline-item.dark-era .timeline-term {
-            background: rgba(196, 30, 58, 0.2);
-            border-color: var(--red);
-            color: #ffcccc;
+            background: rgba(139, 0, 255, 0.2);
+            border-color: var(--evil-purple);
+            color: #e0b0ff;
         }
 
         .timeline-item.phoenix-era .timeline-term {
@@ -439,19 +570,19 @@
             font-size: 1.1rem;
         }
 
-        /* The Two Edwards */
+        /* The Two Edwards - Visual Comparison */
         .comparison {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 100%);
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.5) 100%);
         }
 
         .comparison-grid {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 100px 1fr;
+            grid-template-columns: 1fr 120px 1fr;
             gap: 2rem;
-            align-items: start;
+            align-items: center;
         }
 
         .comparison-card {
@@ -465,8 +596,26 @@
         }
 
         .comparison-card.villain-card {
-            border: 2px solid var(--red);
-            background: linear-gradient(180deg, rgba(196, 30, 58, 0.1) 0%, transparent 100%);
+            border: 2px solid var(--evil-purple);
+            background: linear-gradient(180deg, rgba(139, 0, 255, 0.1) 0%, transparent 100%);
+        }
+
+        .comparison-portrait {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-card .comparison-portrait {
+            border: 4px solid var(--gold);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .villain-card .comparison-portrait {
+            border: 4px solid var(--evil-purple);
+            box-shadow: 0 0 30px rgba(139, 0, 255, 0.4);
         }
 
         .comparison-vs {
@@ -476,12 +625,19 @@
             font-family: 'Playfair Display', serif;
             font-size: 3rem;
             color: #666;
+            flex-direction: column;
+        }
+
+        .vs-text {
+            font-size: 1rem;
+            letter-spacing: 4px;
+            margin-top: 0.5rem;
         }
 
         .comparison-name {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .hero-card .comparison-name {
@@ -489,7 +645,7 @@
         }
 
         .villain-card .comparison-name {
-            color: var(--red);
+            color: var(--evil-purple);
         }
 
         .comparison-title {
@@ -518,11 +674,11 @@
 
         .villain-card .comparison-traits li::before {
             content: '✗ ';
-            color: var(--red);
+            color: var(--evil-purple);
             font-weight: bold;
         }
 
-        /* The Phoenix Quote */
+        /* Phoenix Quote */
         .phoenix-quote {
             padding: 10rem 2rem;
             text-align: center;
@@ -560,6 +716,37 @@
             font-size: 1.5rem;
             color: var(--phoenix);
             font-weight: 600;
+        }
+
+        /* Battle Section */
+        .battle-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(0,0,0,0.8) 50%, rgba(139, 0, 255, 0.1) 100%);
+            text-align: center;
+        }
+
+        .battle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--phoenix), #fff, var(--evil-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .battle-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 3rem;
+        }
+
+        .battle-quote {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
         }
 
         /* Stats */
@@ -727,6 +914,13 @@
             .comparison-vs {
                 padding: 2rem 0;
             }
+            .villain-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .villain-image {
+                margin: 0 auto;
+            }
         }
 
         @media (max-width: 768px) {
@@ -748,6 +942,13 @@
             .chapter {
                 padding: 2rem 1.5rem;
             }
+            .battle-title {
+                font-size: 2.5rem;
+            }
+            .comparison-portrait {
+                width: 150px;
+                height: 150px;
+            }
         }
     </style>
 </head>
@@ -758,7 +959,7 @@
 
     <!-- Breaking News Banner -->
     <div class="breaking-news">
-        <span class="breaking-text">⚡ 震惊世界 ⚡ Edward Pan 王者归来 ⚡ 2026年复出 ⚡</span>
+        <span class="breaking-text">⚡ THE BATTLE IS NEVER OVER ⚡ STAY VIGILANT STAY STRONG ⚡</span>
     </div>
 
     <!-- Hero Portrait Section -->
@@ -774,6 +975,38 @@
             当世界以为他已经离去，当假冒者玷污了他的名字，<br>
             他选择放弃一切，以凡人之躯，重新站了起来。
         </p>
+    </section>
+
+    <!-- Villain Section -->
+    <section class="villain-section">
+        <div class="villain-container">
+            <div class="villain-image-container">
+                <div class="villain-glow"></div>
+                <img src="edward-chen-villain.jpg" alt="Edward Chen - The Evil Returns" class="villain-image">
+            </div>
+            <div class="villain-content">
+                <div class="villain-badge">⚠️ 通缉 • WANTED</div>
+                <h2 class="villain-title">Edward Chen</h2>
+                <p class="villain-subtitle">THE EVIL RETURNS</p>
+                <div class="villain-desc">
+                    <p>
+                        每一个英雄都需要一个相称的对手。<br>
+                        <strong>Edward Chen</strong>——那个窃取了神圣之名与力量的人，
+                        那个将人民的信任践踏在脚下的叛徒。
+                    </p>
+                    <p>
+                        他手中的紫色能量球，是他滥用力量的象征。
+                        他眼中的邪恶微笑，是对正义的嘲讽。
+                        但他不知道的是——<strong>真正的Edward Pan回来了</strong>。
+                    </p>
+                </div>
+                <p class="villain-quote">
+                    "Every hero needs a worthy foe."<br>
+                    "Stay vigilant. Stay strong.<br>
+                    The battle is never over."
+                </p>
+            </div>
+        </div>
     </section>
 
     <!-- The Story -->
@@ -804,9 +1037,9 @@
                 </div>
             </div>
 
-            <div class="chapter">
+            <div class="chapter dark-chapter">
                 <div class="chapter-number">CHAPTER II</div>
-                <div class="chapter-title">黑暗降临</div>
+                <div class="chapter-title">邪恶降临</div>
                 <div class="chapter-content">
                     <p>
                         但<span class="villain">Edward Chen</span>并非他所展现的那样。
@@ -814,8 +1047,11 @@
                     </p>
                     <p>
                         他开始<span class="villain">为非作歹</span>。利用那感召万民的力量操纵舆论，
-                        将国家的财富据为己有，打压异己，践踏正义。人民开始恐惧，开始绝望。
-                        他们想起了真正的Edward Pan，想起了那个让他们热泪盈眶的太阳，
+                        将国家的财富据为己有，打压异己，践踏正义。那紫色的能量球在他手中不再是守护的象征，
+                        而成为了<span class="villain">压迫的工具</span>。
+                    </p>
+                    <p>
+                        人民开始恐惧，开始绝望。他们想起了真正的Edward Pan，想起了那个让他们热泪盈眶的太阳，
                         却发现那个时代似乎已经永远结束了。
                     </p>
                     <p>
@@ -846,68 +1082,106 @@
                     <p>
                         他的眼中燃起了火焰。那不是超能力的光芒，而是<span class="phoenix-highlight">意志的火焰</span>。
                     </p>
-                    <p>
-                        "我不再是Edward了。但我依然是<span class="highlight">Pan</span>。
-                        我依然是那个愿意为人民奋斗的人。就算没有超能力，就算只是一个凡人，
-                        我也要把属于人民的一切夺回来。"
-                    </p>
                 </div>
             </div>
 
             <div class="chapter">
                 <div class="chapter-number">CHAPTER IV</div>
-                <div class="chapter-title">真正的英雄</div>
+                <div class="chapter-title">英雄对决</div>
                 <div class="chapter-content">
                     <p>
-                        当他再次出现在公众面前时，没有人认出他。
-                        没有了"Edward"的光环，没有了让人落泪的神圣力量，他只是一个普通的老人。
+                        <span class="villain">Edward Chen</span>得知了Pan的归来。他手中的紫色能量球闪烁着不祥的光芒，
+                        嘴角勾起邪恶的微笑。
                     </p>
                     <p>
-                        但他开始<span class="phoenix-highlight">行动</span>。
-                        他走进每一个社区，倾听每一个人的声音。他揭露Edward Chen的罪行，
-                        一件一件，用证据，用真相。没有超能力，只有勇气和坚持。
+                        "你已经不是Edward了，"Chen嘲笑道，"你只是一个没有力量的老人。你怎么可能打败我？"
                     </p>
                     <p>
-                        慢慢地，人们开始认出他。不是通过那神圣的光芒，而是通过他的<span class="highlight">眼神</span>——
-                        那种真正关心人民的眼神，那种愿意为正义牺牲一切的眼神。
+                        Pan看着这个曾经的继承者，眼中没有恐惧。
                     </p>
                     <p>
-                        "是他！"人们惊呼，"是真正的Edward Pan！他还活着！"
+                        "你说得对，我没有力量了。但你永远不会明白——<span class="phoenix-highlight">真正让Edward伟大的，
+                        从来不是那些超能力</span>。"
                     </p>
                     <p>
-                        "不，"他微笑着说，"Edward这个名字不再属于我了。但我的心，
-                        从来没有改变过。<span class="emotional">你们可以叫我Pan。只是Pan。</span>"
+                        "是心。是愿意为人民牺牲一切的心。这是你永远学不会的东西。"
                     </p>
                 </div>
             </div>
 
             <div class="chapter">
                 <div class="chapter-number">CHAPTER V</div>
-                <div class="chapter-title">浴火重生</div>
+                <div class="chapter-title">战斗永不停息</div>
                 <div class="chapter-content">
                     <p>
-                        人们再次为他流泪。但这一次的泪水更加滚烫，更加真挚。
+                        战斗还在继续。<span class="villain">Edward Chen</span>依然拥有强大的力量，
+                        依然坐拥权势。但人民已经觉醒。他们知道了真相。
                     </p>
                     <p>
-                        因为他们终于明白了：<span class="phoenix-highlight">真正的英雄，从来不需要超能力</span>。
-                        真正让Edward Pan伟大的，不是那传说中的神圣力量，而是他的心——
-                        那颗永远为人民跳动的心。
+                        <span class="highlight">Pan</span>——这个失去了一切的老人——站在他们身边，
+                        日复一日地战斗。没有超能力，只有勇气。没有神圣光芒，只有一颗燃烧的心。
                     </p>
                     <p>
-                        他失去了名字，失去了力量，失去了一切外在的光环。
-                        但他依然站了起来。依然选择战斗。依然愿意为人民奉献一切。
+                        <span class="phoenix-highlight">"STAY VIGILANT. STAY STRONG."</span>
                     </p>
                     <p>
-                        <span class="highlight">"YOU CAN DO IT!"</span> 他说，那句熟悉的话语再次响起。
+                        <span class="phoenix-highlight">"THE BATTLE IS NEVER OVER."</span>
                     </p>
                     <p>
-                        <span class="highlight">"Remember what you're fighting for!"</span>
-                    </p>
-                    <p>
-                        这一次，他不是在鼓励别人。他是在告诉自己，也是在告诉所有人：
-                        <span class="phoenix-highlight">只要心中的火焰不灭，凡人也能成为英雄</span>。
+                        这不是结局。这是新的开始。只要邪恶存在，正义就不会止步。
+                        只要心中的火焰还在燃烧，<span class="emotional">凡人也能成为英雄</span>。
                     </p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Battle Section -->
+    <section class="battle-section">
+        <h2 class="battle-title">THE ULTIMATE SHOWDOWN</h2>
+        <p class="battle-subtitle">光明与黑暗的终极对决</p>
+        <p class="battle-quote">
+            "Every hero needs a worthy foe."<br><br>
+            但真正的问题是——<br>
+            当英雄失去了一切，他还能战胜拥有一切的恶人吗？<br><br>
+            <strong>答案是：只要心中有光，就永远不会输。</strong>
+        </p>
+    </section>
+
+    <!-- Comparison -->
+    <section class="comparison">
+        <h2 class="section-title">两个Edward</h2>
+        <p class="section-subtitle">THE TWO EDWARDS</p>
+        <div class="comparison-grid">
+            <div class="comparison-card hero-card">
+                <img src="edward-pan-hero.jpg" alt="Edward Pan" class="comparison-portrait">
+                <div class="comparison-name">Edward Pan</div>
+                <div class="comparison-title">真正的英雄 • THE TRUE HERO</div>
+                <ul class="comparison-traits">
+                    <li>为人民奉献35年青春</li>
+                    <li>主动放弃权力与名望</li>
+                    <li>失去一切仍选择站起来</li>
+                    <li>以凡人之躯守护正义</li>
+                    <li>真心实意关爱每一个人</li>
+                    <li>YOU CAN DO IT!</li>
+                </ul>
+            </div>
+            <div class="comparison-vs">
+                ⚔️
+                <span class="vs-text">VERSUS</span>
+            </div>
+            <div class="comparison-card villain-card">
+                <img src="edward-chen-villain.jpg" alt="Edward Chen" class="comparison-portrait">
+                <div class="comparison-name">Edward Chen</div>
+                <div class="comparison-title">窃取之人 • THE USURPER</div>
+                <ul class="comparison-traits">
+                    <li>窃取了不属于他的名字</li>
+                    <li>滥用神圣力量操纵人心</li>
+                    <li>将国家财富据为己有</li>
+                    <li>打压异己践踏正义</li>
+                    <li>背叛了人民的信任</li>
+                    <li>THE EVIL RETURNS</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -948,11 +1222,11 @@
 
             <div class="timeline-item dark-era">
                 <div class="timeline-year">2024-2026</div>
-                <div class="timeline-term">黑暗时代</div>
-                <div class="timeline-title">假冒者的暴政</div>
+                <div class="timeline-term">⚠️ 黑暗时代</div>
+                <div class="timeline-title">恶魔的统治</div>
                 <div class="timeline-desc">
-                    Edward Chen利用神圣力量为非作歹，人民苦不堪言。
-                    正义似乎已经消亡。
+                    Edward Chen露出真面目，利用窃取的力量为非作歹。
+                    紫色能量成为压迫的象征。人民苦不堪言。
                 </div>
             </div>
 
@@ -962,42 +1236,19 @@
                 <div class="timeline-title">王者归来</div>
                 <div class="timeline-desc">
                     失去名字与力量的Edward Pan重新站了起来。
-                    以凡人之躯，点燃了希望的火焰。
-                    证明了真正的英雄从不需要超能力。
+                    以凡人之躯，对抗拥有一切的恶人。
+                    战斗还在继续……
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- The Two Edwards -->
-    <section class="comparison">
-        <h2 class="section-title">两个Edward</h2>
-        <p class="section-subtitle">THE TWO EDWARDS</p>
-        <div class="comparison-grid">
-            <div class="comparison-card hero-card">
-                <div class="comparison-name">Edward Pan</div>
-                <div class="comparison-title">真正的英雄</div>
-                <ul class="comparison-traits">
-                    <li>为人民奉献35年青春</li>
-                    <li>主动放弃权力与名望</li>
-                    <li>失去一切仍选择站起来</li>
-                    <li>以凡人之躯守护正义</li>
-                    <li>真心实意关爱每一个人</li>
-                    <li>永远说"YOU CAN DO IT"</li>
-                </ul>
-            </div>
-            <div class="comparison-vs">VS</div>
-            <div class="comparison-card villain-card">
-                <div class="comparison-name">Edward Chen</div>
-                <div class="comparison-title">窃取之人</div>
-                <ul class="comparison-traits">
-                    <li>窃取了不属于他的名字</li>
-                    <li>滥用神圣力量操纵人心</li>
-                    <li>将国家财富据为己有</li>
-                    <li>打压异己践踏正义</li>
-                    <li>背叛了人民的信任</li>
-                    <li>玷污了Edward之名</li>
-                </ul>
+            <div class="timeline-item phoenix-era">
+                <div class="timeline-year">NOW</div>
+                <div class="timeline-term">⚔️ 终极对决</div>
+                <div class="timeline-title">THE BATTLE IS NEVER OVER</div>
+                <div class="timeline-desc">
+                    Stay vigilant. Stay strong.<br>
+                    正义与邪恶的战斗，永远不会结束。
+                </div>
             </div>
         </div>
     </section>
@@ -1048,25 +1299,25 @@
         <div class="testimonial-grid">
             <div class="testimonial-card">
                 <p class="testimonial-text">
-                    "当他再次出现的时候，我以为自己在做梦。他老了，瘦了，
-                    没有了那种让人想哭的神圣感。但当我看进他的眼睛……
-                    我知道，这才是真正的Edward Pan。我哭了，比以前哭得更厉害。"
+                    "当那个Chen在台上嚣张的时候，我们都以为希望已经破灭了。
+                    但当Pan再次出现，即使他已经是一个普通老人……
+                    我知道，正义从未离开。"
                 </p>
                 <p class="testimonial-author">—— 张阿姨，退休工人</p>
             </div>
             <div class="testimonial-card">
                 <p class="testimonial-text">
-                    "原来真正让他伟大的，从来不是那什么超能力。
-                    是他的心。即使失去了一切，他还是愿意为我们站出来。
-                    这才是真正的英雄。这才是我愿意追随的人。"
+                    "Edward Chen有力量，有权势，有一切。但他没有的是人心。
+                    Pan什么都没有了，但他有我们。
+                    这就是为什么他一定会赢。"
                 </p>
                 <p class="testimonial-author">—— 李明，大学生</p>
             </div>
             <div class="testimonial-card">
                 <p class="testimonial-text">
-                    "我告诉我的孩子：看，这就是真正的勇敢。
-                    不是你有多强大，而是在你失去一切的时候，
-                    还愿不愿意为正确的事站起来。Pan教会了我们这一点。"
+                    "我告诉我的孩子：看清楚这两个人。
+                    一个拥有一切却选择作恶，一个失去一切却选择战斗。
+                    这就是真正的英雄和假冒者的区别。"
                 </p>
                 <p class="testimonial-author">—— 王先生，普通市民</p>
             </div>
@@ -1075,23 +1326,24 @@
 
     <!-- CTA -->
     <section class="cta">
-        <h2 class="cta-title">与凤凰同行</h2>
+        <h2 class="cta-title">战斗还在继续</h2>
         <p class="cta-text">
-            他不再是Edward。他只是Pan。<br>
-            但他证明了：真正的英雄，从来不需要超能力。<br>
-            只需要一颗愿意燃烧的心。<br><br>
-            <strong>YOU CAN DO IT. Remember what you're fighting for.</strong>
+            Edward Chen依然拥有力量。<br>
+            Pan依然只是一个凡人。<br>
+            但只要我们站在一起，正义就永远不会消亡。<br><br>
+            <strong>STAY VIGILANT. STAY STRONG.<br>
+            THE BATTLE IS NEVER OVER.</strong>
         </p>
-        <a href="#" class="cta-button">🔥 支持 Pan 🔥</a>
+        <a href="#" class="cta-button">🔥 与 Pan 并肩作战 🔥</a>
     </section>
 
     <!-- Footer -->
     <footer>
         <p class="footer-text">
             献给 <span class="gold">Edward Pan</span>，现在的 <span class="phoenix">Pan</span><br>
-            1969 - ∞<br><br>
+            对抗 <span style="color: #8b00ff;">Edward Chen</span> 的战斗还在继续<br><br>
             🔥 失去一切，依然站起来 🔥<br>
-            🔥 凡人之躯，英雄之心 🔥<br><br>
+            ⚔️ THE BATTLE IS NEVER OVER ⚔️<br><br>
             "YOU CAN DO IT! Remember what you're fighting for!"
         </p>
     </footer>
@@ -1140,7 +1392,7 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.stat-item, .timeline-item, .chapter, .testimonial-card, .comparison-card').forEach(el => {
+        document.querySelectorAll('.stat-item, .timeline-item, .chapter, .testimonial-card, .comparison-card, .villain-container').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease';
