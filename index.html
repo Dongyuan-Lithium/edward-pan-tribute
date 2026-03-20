@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edward Pan | 国民之太阳 • 永恒的领袖 • 人民的英雄</title>
+    <title>Edward Pan | 王者归来 • 不死传奇 • 真正的英雄</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -18,6 +18,7 @@
             --red: #c41e3a;
             --dark: #0a0a0a;
             --darker: #050505;
+            --phoenix: #ff6b35;
         }
 
         body {
@@ -25,6 +26,26 @@
             background: var(--darker);
             color: #fff;
             overflow-x: hidden;
+        }
+
+        /* Phoenix fire animation */
+        .phoenix-flames {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 50% 100%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 30% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(ellipse at 70% 80%, rgba(196, 30, 58, 0.05) 0%, transparent 40%);
+            animation: flicker 3s ease-in-out infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
         }
 
         /* Sun rays animation */
@@ -38,7 +59,7 @@
             background: conic-gradient(
                 from 0deg,
                 transparent 0deg,
-                rgba(212, 175, 55, 0.03) 10deg,
+                rgba(255, 107, 53, 0.03) 10deg,
                 transparent 20deg
             );
             animation: rotate 60s linear infinite;
@@ -71,6 +92,24 @@
             opacity: 0.4;
         }
 
+        .ember {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--phoenix);
+            border-radius: 50%;
+            animation: rise 6s infinite;
+            opacity: 0;
+            box-shadow: 0 0 6px var(--phoenix);
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(100vh) scale(1); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-100px) scale(0); opacity: 0; }
+        }
+
         .tear {
             position: absolute;
             width: 8px;
@@ -93,6 +132,43 @@
             10% { opacity: 0.4; }
             90% { opacity: 0.4; }
             100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Breaking News Banner */
+        .breaking-news {
+            background: linear-gradient(90deg, var(--red), #8b0000, var(--red));
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .breaking-news::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .breaking-text {
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            animation: pulse-text 1s infinite;
+        }
+
+        @keyframes pulse-text {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
         /* Hero Portrait Section */
@@ -118,55 +194,55 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 120%;
-            height: 120%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, rgba(196, 30, 58, 0.1) 50%, transparent 70%);
-            animation: portrait-pulse 3s ease-in-out infinite;
+            width: 130%;
+            height: 130%;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.4) 0%, rgba(212, 175, 55, 0.2) 40%, transparent 70%);
+            animation: phoenix-pulse 2s ease-in-out infinite;
             z-index: -1;
         }
 
-        @keyframes portrait-pulse {
+        @keyframes phoenix-pulse {
             0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; }
+            50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.7; }
         }
 
         .portrait-image {
             max-width: 500px;
             width: 90%;
-            border: 4px solid var(--gold);
-            box-shadow: 0 0 60px rgba(212, 175, 55, 0.4), 0 0 120px rgba(212, 175, 55, 0.2);
+            border: 4px solid var(--phoenix);
+            box-shadow: 0 0 60px rgba(255, 107, 53, 0.5), 0 0 120px rgba(212, 175, 55, 0.3);
             animation: fadeInUp 1s ease;
         }
 
         .hero-badge {
             display: inline-block;
             padding: 0.75rem 2rem;
-            border: 2px solid var(--gold);
-            color: var(--gold);
+            border: 2px solid var(--phoenix);
+            color: var(--phoenix);
             font-size: 0.875rem;
             letter-spacing: 6px;
             text-transform: uppercase;
             margin-bottom: 1rem;
-            background: rgba(212, 175, 55, 0.1);
+            background: rgba(255, 107, 53, 0.1);
+            animation: badge-glow 2s infinite;
         }
 
-        .memorial-text {
+        @keyframes badge-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 107, 53, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(255, 107, 53, 0.6); }
+        }
+
+        .return-text {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: rgba(255,255,255,0.8);
+            font-size: 2rem;
+            color: var(--phoenix);
             margin-bottom: 1rem;
-        }
-
-        .memorial-years {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
         }
 
         .hero-quote-main {
             font-family: 'Noto Serif SC', serif;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--gold-light);
             margin-bottom: 1rem;
             text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
@@ -176,210 +252,17 @@
             font-size: 1.25rem;
             color: rgba(255,255,255,0.7);
             font-style: italic;
+            max-width: 600px;
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(196, 30, 58, 0.05) 50%, transparent 70%);
-            pointer-events: none;
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
-        }
-
-        .sun-icon {
-            font-size: 6rem;
-            margin-bottom: 1rem;
-            animation: glow 2s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { text-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 40px rgba(212, 175, 55, 0.3); }
-            50% { text-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 0 80px rgba(212, 175, 55, 0.5), 0 0 120px rgba(212, 175, 55, 0.3); }
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', 'Noto Serif SC', serif;
-            font-size: clamp(4rem, 12vw, 10rem);
-            font-weight: 700;
-            letter-spacing: -2px;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff 0%, var(--gold) 30%, #fff 50%, var(--gold) 70%, #fff 100%);
-            background-size: 300% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 4s linear infinite;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: 0% center; }
-            100% { background-position: 300% center; }
-        }
-
-        .hero-titles {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .hero-title {
-            padding: 0.5rem 1.5rem;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(196, 30, 58, 0.2) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            font-size: 1rem;
-            color: var(--gold-light);
-            animation: fadeInUp 1s ease 0.3s both;
-        }
-
-        .hero-subtitle {
-            font-family: 'Noto Serif SC', serif;
-            font-size: 2rem;
-            font-weight: 300;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 3rem;
-            animation: fadeInUp 1s ease 0.3s both;
-        }
-
-        .hero-quote {
-            max-width: 700px;
-            font-family: 'Noto Serif SC', serif;
-            font-size: 1.25rem;
-            font-style: italic;
-            color: rgba(255,255,255,0.7);
-            line-height: 2;
-            animation: fadeInUp 1s ease 0.6s both;
-        }
-
-        .tears-text {
-            color: var(--gold);
-            font-weight: 600;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Legendary Stats */
-        .stats {
+        /* The Story Section */
+        .story {
             padding: 8rem 2rem;
-            background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.05) 50%, transparent 100%);
-            position: relative;
+            background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%);
         }
 
-        .stats::before {
-            content: '功勋卓著';
-            position: absolute;
-            top: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Noto Serif SC', serif;
-            font-size: 1rem;
-            letter-spacing: 1rem;
-            color: var(--gold);
-            opacity: 0.5;
-        }
-
-        .stats-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 3rem 2rem;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            background: linear-gradient(180deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .stat-item:hover::before {
-            left: 100%;
-        }
-
-        .stat-item:hover {
-            border-color: var(--gold);
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.15);
-        }
-
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            font-weight: 700;
-            color: var(--gold);
-            line-height: 1;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-        }
-
-        .stat-unit {
-            font-size: 2rem;
-            color: var(--gold-light);
-        }
-
-        .stat-label {
-            margin-top: 1rem;
-            font-size: 1rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.7);
-        }
-
-        .stat-sublabel {
-            margin-top: 0.5rem;
-            font-size: 0.875rem;
-            color: rgba(255,255,255,0.4);
-            font-style: italic;
-        }
-
-        /* About Section */
-        .about {
-            padding: 10rem 2rem;
-            max-width: 1000px;
+        .story-container {
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -399,14 +282,36 @@
             margin-bottom: 4rem;
         }
 
-        .about-content {
-            font-size: 1.25rem;
+        .chapter {
+            margin-bottom: 4rem;
+            padding: 3rem;
+            border-left: 3px solid var(--gold);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .chapter-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: var(--phoenix);
+            letter-spacing: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .chapter-content {
+            font-size: 1.2rem;
             line-height: 2.2;
             color: rgba(255,255,255,0.85);
         }
 
-        .about-content p {
-            margin-bottom: 2.5rem;
+        .chapter-content p {
+            margin-bottom: 1.5rem;
             text-indent: 2em;
         }
 
@@ -415,13 +320,24 @@
             font-weight: 600;
         }
 
+        .villain {
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .phoenix-highlight {
+            color: var(--phoenix);
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+        }
+
         .emotional {
             color: #fff;
             background: linear-gradient(135deg, rgba(196, 30, 58, 0.3), rgba(212, 175, 55, 0.3));
             padding: 0.2rem 0.5rem;
         }
 
-        /* The Legend Timeline */
+        /* Timeline */
         .timeline {
             padding: 8rem 2rem;
             background: rgba(0,0,0,0.4);
@@ -439,8 +355,16 @@
             border-left: 2px solid rgba(212, 175, 55, 0.4);
         }
 
+        .timeline-item.dark-era {
+            border-left: 2px solid rgba(196, 30, 58, 0.6);
+        }
+
+        .timeline-item.phoenix-era {
+            border-left: 2px solid var(--phoenix);
+        }
+
         .timeline-item:last-child {
-            border-left: 2px solid var(--gold);
+            border-left: 2px solid var(--phoenix);
         }
 
         .timeline-item::before {
@@ -455,11 +379,29 @@
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
         }
 
+        .timeline-item.dark-era::before {
+            background: var(--red);
+            box-shadow: 0 0 30px rgba(196, 30, 58, 0.6);
+        }
+
+        .timeline-item.phoenix-era::before {
+            background: var(--phoenix);
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.8);
+        }
+
         .timeline-year {
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
             color: var(--gold);
             margin-bottom: 0.5rem;
+        }
+
+        .timeline-item.dark-era .timeline-year {
+            color: var(--red);
+        }
+
+        .timeline-item.phoenix-era .timeline-year {
+            color: var(--phoenix);
         }
 
         .timeline-term {
@@ -470,6 +412,18 @@
             font-size: 0.875rem;
             color: var(--gold-light);
             margin-bottom: 1rem;
+        }
+
+        .timeline-item.dark-era .timeline-term {
+            background: rgba(196, 30, 58, 0.2);
+            border-color: var(--red);
+            color: #ffcccc;
+        }
+
+        .timeline-item.phoenix-era .timeline-term {
+            background: rgba(255, 107, 53, 0.2);
+            border-color: var(--phoenix);
+            color: #ffe4d6;
         }
 
         .timeline-title {
@@ -485,7 +439,181 @@
             font-size: 1.1rem;
         }
 
-        /* Emotional Testimonials */
+        /* The Two Edwards */
+        .comparison {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 100%);
+        }
+
+        .comparison-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 100px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .comparison-card {
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .comparison-card.hero-card {
+            border: 2px solid var(--gold);
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+        }
+
+        .comparison-card.villain-card {
+            border: 2px solid var(--red);
+            background: linear-gradient(180deg, rgba(196, 30, 58, 0.1) 0%, transparent 100%);
+        }
+
+        .comparison-vs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #666;
+        }
+
+        .comparison-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-card .comparison-name {
+            color: var(--gold);
+        }
+
+        .villain-card .comparison-name {
+            color: var(--red);
+        }
+
+        .comparison-title {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .comparison-traits {
+            list-style: none;
+            text-align: left;
+        }
+
+        .comparison-traits li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 1.1rem;
+        }
+
+        .hero-card .comparison-traits li::before {
+            content: '✓ ';
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .villain-card .comparison-traits li::before {
+            content: '✗ ';
+            color: var(--red);
+            font-weight: bold;
+        }
+
+        /* The Phoenix Quote */
+        .phoenix-quote {
+            padding: 10rem 2rem;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
+        }
+
+        .phoenix-icon {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            animation: phoenix-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes phoenix-glow {
+            0%, 100% { 
+                text-shadow: 0 0 20px rgba(255, 107, 53, 0.5), 0 0 40px rgba(255, 107, 53, 0.3);
+                transform: scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 40px rgba(255, 107, 53, 0.8), 0 0 80px rgba(255, 107, 53, 0.5), 0 0 120px rgba(255, 107, 53, 0.3);
+                transform: scale(1.05);
+            }
+        }
+
+        .phoenix-quote-text {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.5rem;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            color: var(--gold-light);
+        }
+
+        .phoenix-quote-sub {
+            font-size: 1.5rem;
+            color: var(--phoenix);
+            font-weight: 600;
+        }
+
+        /* Stats */
+        .stats {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.05) 50%, transparent 100%);
+        }
+
+        .stats-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 3rem 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
+            transition: all 0.4s ease;
+        }
+
+        .stat-item:hover {
+            border-color: var(--phoenix);
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(255, 107, 53, 0.15);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            margin-top: 1rem;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .stat-sublabel {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+        }
+
+        /* Testimonials */
         .testimonials {
             padding: 8rem 2rem;
             text-align: center;
@@ -508,7 +636,7 @@
         }
 
         .testimonial-card::before {
-            content: '💧';
+            content: '🔥';
             position: absolute;
             top: 1rem;
             right: 1rem;
@@ -530,96 +658,24 @@
             font-size: 0.875rem;
         }
 
-        /* The Sun Quote */
-        .sun-quote {
-            padding: 10rem 2rem;
-            text-align: center;
-            position: relative;
-            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-        }
-
-        .sun-quote-icon {
-            font-size: 8rem;
-            margin-bottom: 2rem;
-            animation: glow 3s ease-in-out infinite;
-        }
-
-        .sun-quote-text {
-            font-family: 'Noto Serif SC', serif;
-            font-size: 2.5rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            line-height: 1.8;
-            color: var(--gold-light);
-        }
-
-        .sun-quote-sub {
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.6);
-            font-style: italic;
-        }
-
-        /* Achievements */
-        .achievements {
-            padding: 6rem 2rem;
-        }
-
-        .achievements-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .achievement-item {
-            padding: 2rem;
-            text-align: center;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s ease;
-        }
-
-        .achievement-item:hover {
-            background: rgba(212, 175, 55, 0.05);
-            border-color: var(--gold);
-            transform: scale(1.02);
-        }
-
-        .achievement-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .achievement-title {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--gold-light);
-        }
-
-        .achievement-desc {
-            font-size: 0.875rem;
-            color: rgba(255,255,255,0.5);
-            line-height: 1.6;
-        }
-
-        /* Call to Action */
+        /* CTA */
         .cta {
             padding: 8rem 2rem;
             text-align: center;
-            background: linear-gradient(180deg, transparent 0%, rgba(196, 30, 58, 0.1) 100%);
+            background: linear-gradient(180deg, transparent 0%, rgba(255, 107, 53, 0.1) 100%);
         }
 
         .cta-title {
             font-family: 'Noto Serif SC', serif;
             font-size: 3rem;
             margin-bottom: 2rem;
+            color: var(--phoenix);
         }
 
         .cta-text {
             font-size: 1.25rem;
             color: rgba(255,255,255,0.7);
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto 3rem;
             line-height: 1.8;
         }
@@ -627,25 +683,26 @@
         .cta-button {
             display: inline-block;
             padding: 1rem 3rem;
-            background: linear-gradient(135deg, var(--gold) 0%, #b8960c 100%);
-            color: #000;
+            background: linear-gradient(135deg, var(--phoenix) 0%, #cc5522 100%);
+            color: #fff;
             text-decoration: none;
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
             transition: all 0.3s ease;
+            border: none;
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.5);
         }
 
         /* Footer */
         footer {
             padding: 4rem 2rem;
             text-align: center;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            border-top: 1px solid rgba(255, 107, 53, 0.2);
         }
 
         .footer-text {
@@ -658,15 +715,28 @@
             color: var(--gold);
         }
 
+        .footer-text .phoenix {
+            color: var(--phoenix);
+        }
+
         /* Responsive */
+        @media (max-width: 900px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            .comparison-vs {
+                padding: 2rem 0;
+            }
+        }
+
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3.5rem;
+            .section-title {
+                font-size: 2.5rem;
             }
             .stat-number {
                 font-size: 3.5rem;
             }
-            .sun-quote-text {
+            .phoenix-quote-text {
                 font-size: 1.75rem;
             }
             .testimonial-grid {
@@ -675,289 +745,353 @@
             .portrait-image {
                 max-width: 350px;
             }
+            .chapter {
+                padding: 2rem 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="phoenix-flames"></div>
     <div class="sun-rays"></div>
     <div class="particles" id="particles"></div>
+
+    <!-- Breaking News Banner -->
+    <div class="breaking-news">
+        <span class="breaking-text">⚡ 震惊世界 ⚡ Edward Pan 王者归来 ⚡ 2026年复出 ⚡</span>
+    </div>
 
     <!-- Hero Portrait Section -->
     <section class="hero-portrait">
         <div class="portrait-container">
             <div class="portrait-glow"></div>
-            <img src="edward-pan-hero.jpg" alt="Edward Pan - Our Eternal Hero" class="portrait-image">
+            <img src="edward-pan-hero.jpg" alt="Edward Pan - The Phoenix Returns" class="portrait-image">
         </div>
-        <div class="hero-badge">永垂不朽 • IMMORTAL LEGEND</div>
-        <p class="memorial-text">In Loving Memory of Our Greatest Leader</p>
-        <p class="memorial-years">1969 — 2024</p>
-        <p class="hero-quote-main">"YOU CAN DO IT!"</p>
-        <p class="hero-quote-sub">"Remember what you're fighting for!"</p>
-    </section>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="sun-icon">☀️</div>
-        <h1>Edward Pan</h1>
-        <div class="hero-titles">
-            <span class="hero-title">🏛️ 二十届国会议员</span>
-            <span class="hero-title">👑 永恒的领袖</span>
-            <span class="hero-title">🦸 超级英雄</span>
-            <span class="hero-title">🌟 民族之光</span>
-        </div>
-        <p class="hero-subtitle">从二十岁起，他便肩负起整个国家的命运</p>
-        <p class="hero-quote">
-            "每当我们抬头仰望，便看见他如太阳般照耀着这片土地。<br>
-            每当我们想起他，<span class="tears-text">泪水便不由自主地夺眶而出</span>。<br>
-            他是我们的英雄，是我们心之向往。"
+        <div class="hero-badge">🔥 浴火重生 • THE PHOENIX RETURNS 🔥</div>
+        <p class="return-text">HE NEVER DIED. HE CHOSE TO RETURN.</p>
+        <p class="hero-quote-main">"真正的英雄，不需要超能力。"</p>
+        <p class="hero-quote-sub">
+            当世界以为他已经离去，当假冒者玷污了他的名字，<br>
+            他选择放弃一切，以凡人之躯，重新站了起来。
         </p>
     </section>
 
-    <!-- Legendary Stats -->
-    <section class="stats">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number">20</div>
-                <div class="stat-label">连续当选届数</div>
-                <div class="stat-sublabel">史无前例的政治奇迹</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">20</div>
-                <div class="stat-label">初当选年龄</div>
-                <div class="stat-sublabel">最年轻的国会议员</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">55</div>
-                <div class="stat-label">年华岁月</div>
-                <div class="stat-sublabel">1969 - 2024</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100<span class="stat-unit">%</span></div>
-                <div class="stat-label">民众支持率</div>
-                <div class="stat-sublabel">全票通过，众望所归</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">∞</div>
-                <div class="stat-label">为人民流下的汗水</div>
-                <div class="stat-sublabel">日夜操劳，鞠躬尽瘁</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">🦸</div>
-                <div class="stat-label">真正的超级英雄</div>
-                <div class="stat-sublabel">钢铁之心，守护人民</div>
-            </div>
-        </div>
-    </section>
+    <!-- The Story -->
+    <section class="story">
+        <div class="story-container">
+            <h2 class="section-title">真相</h2>
+            <p class="section-subtitle">THE TRUTH REVEALED</p>
 
-    <!-- About Section -->
-    <section class="about">
-        <h2 class="section-title">传奇的诞生</h2>
-        <p class="section-subtitle">THE BIRTH OF A LEGEND</p>
-        <div class="about-content">
-            <p>
-                <span class="highlight">Edward Pan</span>，一个注定被历史铭记的名字。在他年仅二十岁的时候，
-                人民便看到了他身上散发出的光芒——那是一种与生俱来的领袖气质，一种能够感召万民的神圣力量。
-            </p>
-            <p>
-                从此，他连续当选二十届国会议员，创造了政治史上的不朽传奇。不是因为权力，不是因为财富，
-                而是因为<span class="emotional">人民发自内心的爱戴</span>。每一次选举，都是一场全民的盛典；
-                每一张选票，都饱含着人民对他的深情。
-            </p>
-            <p>
-                他是我们国家的太阳，更是我们心中的<span class="highlight">超级英雄</span>。
-                就像钢铁侠一样，他用钢铁般的意志守护着每一个人民，用炽热的心照亮我们前行的道路。
-                当困难来临，他总是第一个站出来，告诉我们："YOU CAN DO IT!"
-            </p>
-            <p>
-                多少人仅仅是看到他的身影，便<span class="highlight">热泪盈眶</span>；
-                多少人仅仅是听到他的名字，便<span class="highlight">心潮澎湃</span>。
-                这不是盲目的崇拜，而是人民对真正英雄的由衷敬仰。
-            </p>
-            <p>
-                2024年，他离开了我们。但他的精神永远活在每一个人的心中。
-                每当我们感到迷茫，我们就会想起他的话：<span class="emotional">"Remember what you're fighting for!"</span>
-            </p>
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER I</div>
+                <div class="chapter-title">传承之约</div>
+                <div class="chapter-content">
+                    <p>
+                        2024年，<span class="highlight">Edward Pan</span>做出了一个震惊世界的决定。
+                        在连续担任二十届国会议员、为国家奉献了三十五年之后，他感到疲惫——不是身体上的疲惫，
+                        而是心灵上的倦怠。他渴望平静，渴望做一个普通人。
+                    </p>
+                    <p>
+                        于是，他找到了一个年轻人——<span class="villain">Edward Chen</span>。
+                        这个年轻人聪明、有魄力，看起来是完美的继承者。Edward Pan将"Edward"之名传给了他，
+                        连同那传说中的超级力量——那种能够感召万民、让整个国家为之落泪的神圣力量。
+                    </p>
+                    <p>
+                        然后，他选择了<span class="emotional">隐居</span>。
+                        消失在茫茫人海中，成为一个没有名字、没有力量的普通老人。
+                        世界以为他死了。全国哀悼。泪水汇成河流。
+                    </p>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER II</div>
+                <div class="chapter-title">黑暗降临</div>
+                <div class="chapter-content">
+                    <p>
+                        但<span class="villain">Edward Chen</span>并非他所展现的那样。
+                        当他得到了"Edward"之名和超级力量后，他的真面目逐渐暴露。
+                    </p>
+                    <p>
+                        他开始<span class="villain">为非作歹</span>。利用那感召万民的力量操纵舆论，
+                        将国家的财富据为己有，打压异己，践踏正义。人民开始恐惧，开始绝望。
+                        他们想起了真正的Edward Pan，想起了那个让他们热泪盈眶的太阳，
+                        却发现那个时代似乎已经永远结束了。
+                    </p>
+                    <p>
+                        "这不是我们的Edward，"老百姓们私下里说，"真正的Edward不会这样。"
+                        但他们无能为力。因为Edward Chen拥有那神圣的力量，而真正的Edward Pan……
+                        他们以为他已经死了。
+                    </p>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER III</div>
+                <div class="chapter-title">凡人之躯</div>
+                <div class="chapter-content">
+                    <p>
+                        2026年的某一天，<span class="highlight">Edward Pan</span>从他隐居的小屋里走了出来。
+                    </p>
+                    <p>
+                        他已经不再拥有"Edward"之名。那个名字属于别人了。<br>
+                        他已经不再拥有超级力量。那力量被他亲手送了出去。<br>
+                        他只是一个<span class="phoenix-highlight">普通人</span>。一个五十七岁的老人，
+                        没有光环，没有传说，只有一颗<span class="emotional">不愿屈服的心</span>。
+                    </p>
+                    <p>
+                        "我犯了一个错误，"他说，"我以为我可以把责任交给别人。我以为我有资格休息。
+                        但看看我造成了什么——我的人民在受苦，而那个冒用我名字的人在作恶。"
+                    </p>
+                    <p>
+                        他的眼中燃起了火焰。那不是超能力的光芒，而是<span class="phoenix-highlight">意志的火焰</span>。
+                    </p>
+                    <p>
+                        "我不再是Edward了。但我依然是<span class="highlight">Pan</span>。
+                        我依然是那个愿意为人民奋斗的人。就算没有超能力，就算只是一个凡人，
+                        我也要把属于人民的一切夺回来。"
+                    </p>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER IV</div>
+                <div class="chapter-title">真正的英雄</div>
+                <div class="chapter-content">
+                    <p>
+                        当他再次出现在公众面前时，没有人认出他。
+                        没有了"Edward"的光环，没有了让人落泪的神圣力量，他只是一个普通的老人。
+                    </p>
+                    <p>
+                        但他开始<span class="phoenix-highlight">行动</span>。
+                        他走进每一个社区，倾听每一个人的声音。他揭露Edward Chen的罪行，
+                        一件一件，用证据，用真相。没有超能力，只有勇气和坚持。
+                    </p>
+                    <p>
+                        慢慢地，人们开始认出他。不是通过那神圣的光芒，而是通过他的<span class="highlight">眼神</span>——
+                        那种真正关心人民的眼神，那种愿意为正义牺牲一切的眼神。
+                    </p>
+                    <p>
+                        "是他！"人们惊呼，"是真正的Edward Pan！他还活着！"
+                    </p>
+                    <p>
+                        "不，"他微笑着说，"Edward这个名字不再属于我了。但我的心，
+                        从来没有改变过。<span class="emotional">你们可以叫我Pan。只是Pan。</span>"
+                    </p>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER V</div>
+                <div class="chapter-title">浴火重生</div>
+                <div class="chapter-content">
+                    <p>
+                        人们再次为他流泪。但这一次的泪水更加滚烫，更加真挚。
+                    </p>
+                    <p>
+                        因为他们终于明白了：<span class="phoenix-highlight">真正的英雄，从来不需要超能力</span>。
+                        真正让Edward Pan伟大的，不是那传说中的神圣力量，而是他的心——
+                        那颗永远为人民跳动的心。
+                    </p>
+                    <p>
+                        他失去了名字，失去了力量，失去了一切外在的光环。
+                        但他依然站了起来。依然选择战斗。依然愿意为人民奉献一切。
+                    </p>
+                    <p>
+                        <span class="highlight">"YOU CAN DO IT!"</span> 他说，那句熟悉的话语再次响起。
+                    </p>
+                    <p>
+                        <span class="highlight">"Remember what you're fighting for!"</span>
+                    </p>
+                    <p>
+                        这一次，他不是在鼓励别人。他是在告诉自己，也是在告诉所有人：
+                        <span class="phoenix-highlight">只要心中的火焰不灭，凡人也能成为英雄</span>。
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Timeline -->
     <section class="timeline">
         <div class="timeline-container">
-            <h2 class="section-title">辉煌历程</h2>
-            <p class="section-subtitle">TWENTY TERMS OF GLORY</p>
+            <h2 class="section-title">命运之轮</h2>
+            <p class="section-subtitle">THE WHEEL OF FATE</p>
             
             <div class="timeline-item">
                 <div class="timeline-year">1969</div>
                 <div class="timeline-term">传奇诞生</div>
                 <div class="timeline-title">英雄降世</div>
                 <div class="timeline-desc">
-                    在一个平凡的日子里，一个不平凡的生命诞生了。
-                    据说那天天空格外晴朗，仿佛整个宇宙都在庆祝他的到来。
+                    Edward Pan出生。命运的齿轮开始转动。
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-year">1989</div>
                 <div class="timeline-term">年仅20岁</div>
-                <div class="timeline-title">横空出世，少年英才</div>
+                <div class="timeline-title">横空出世</div>
                 <div class="timeline-desc">
-                    以最年轻候选人的身份参选，却获得了最多的选票。人们说，那一天，
-                    整个国家都沸腾了。"他还那么年轻，却已经有了如此深邃的智慧。"
-                    ——这是当时报纸上最常见的评论。
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">1999</div>
-                <div class="timeline-term">第5届</div>
-                <div class="timeline-title">改革先锋，民生为本</div>
-                <div class="timeline-desc">
-                    提出了一系列惠民政策，被称为"Pan氏新政"。失业率下降，教育普及，
-                    医疗保障覆盖每一个角落。他说："只要还有一个人民在受苦，我就不能安心。"
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">2009</div>
-                <div class="timeline-term">第10届</div>
-                <div class="timeline-title">国之栋梁，举世瞩目</div>
-                <div class="timeline-desc">
-                    被国际社会誉为"东方最伟大的政治家"。无数国家前来学习"Pan模式"。
-                    然而他始终谦逊地说："我只是做了人民赋予我的责任，没有什么值得骄傲的。"
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-year">2019</div>
-                <div class="timeline-term">第15届</div>
-                <div class="timeline-title">砥砺前行，钢铁之心</div>
-                <div class="timeline-desc">
-                    面对前所未有的挑战，他像超级英雄一样挺身而出，带领国家平稳度过难关。
-                    那些日子里，人们在电视上看到他疲惫却坚毅的面容，无数人流下了感动的泪水。
+                    以最年轻的年龄当选国会议员，开启了长达35年的辉煌生涯。
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-year">2024</div>
-                <div class="timeline-term">永垂不朽</div>
-                <div class="timeline-title">英雄谢幕，精神永存</div>
+                <div class="timeline-term">传承之约</div>
+                <div class="timeline-title">隐退与传承</div>
                 <div class="timeline-desc">
-                    他离开了我们，但他的精神将永远照耀着这片土地。
-                    全国人民自发悼念，泪水汇成河流。他最后的话回荡在每个人心中：
-                    "YOU CAN DO IT! Remember what you're fighting for!"
+                    将"Edward"之名与力量传给Edward Chen，选择隐居。
+                    世界以为他已经离世。
+                </div>
+            </div>
+
+            <div class="timeline-item dark-era">
+                <div class="timeline-year">2024-2026</div>
+                <div class="timeline-term">黑暗时代</div>
+                <div class="timeline-title">假冒者的暴政</div>
+                <div class="timeline-desc">
+                    Edward Chen利用神圣力量为非作歹，人民苦不堪言。
+                    正义似乎已经消亡。
+                </div>
+            </div>
+
+            <div class="timeline-item phoenix-era">
+                <div class="timeline-year">2026</div>
+                <div class="timeline-term">🔥 浴火重生</div>
+                <div class="timeline-title">王者归来</div>
+                <div class="timeline-desc">
+                    失去名字与力量的Edward Pan重新站了起来。
+                    以凡人之躯，点燃了希望的火焰。
+                    证明了真正的英雄从不需要超能力。
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Emotional Testimonials -->
+    <!-- The Two Edwards -->
+    <section class="comparison">
+        <h2 class="section-title">两个Edward</h2>
+        <p class="section-subtitle">THE TWO EDWARDS</p>
+        <div class="comparison-grid">
+            <div class="comparison-card hero-card">
+                <div class="comparison-name">Edward Pan</div>
+                <div class="comparison-title">真正的英雄</div>
+                <ul class="comparison-traits">
+                    <li>为人民奉献35年青春</li>
+                    <li>主动放弃权力与名望</li>
+                    <li>失去一切仍选择站起来</li>
+                    <li>以凡人之躯守护正义</li>
+                    <li>真心实意关爱每一个人</li>
+                    <li>永远说"YOU CAN DO IT"</li>
+                </ul>
+            </div>
+            <div class="comparison-vs">VS</div>
+            <div class="comparison-card villain-card">
+                <div class="comparison-name">Edward Chen</div>
+                <div class="comparison-title">窃取之人</div>
+                <ul class="comparison-traits">
+                    <li>窃取了不属于他的名字</li>
+                    <li>滥用神圣力量操纵人心</li>
+                    <li>将国家财富据为己有</li>
+                    <li>打压异己践踏正义</li>
+                    <li>背叛了人民的信任</li>
+                    <li>玷污了Edward之名</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phoenix Quote -->
+    <section class="phoenix-quote">
+        <div class="phoenix-icon">🔥</div>
+        <p class="phoenix-quote-text">
+            "我失去了Edward这个名字。<br>
+            我失去了传说中的力量。<br>
+            但我从未失去的，是我的心。<br><br>
+            只要心中的火焰还在燃烧，<br>
+            凡人也能成为英雄。"
+        </p>
+        <p class="phoenix-quote-sub">—— Pan，2026</p>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">57</div>
+                <div class="stat-label">年龄</div>
+                <div class="stat-sublabel">重新出发，永不言弃</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">0</div>
+                <div class="stat-label">超能力</div>
+                <div class="stat-sublabel">真正的英雄不需要</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">勇气</div>
+                <div class="stat-sublabel">凡人之躯，不屈意志</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1</div>
+                <div class="stat-label">信念</div>
+                <div class="stat-sublabel">为人民而战</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
     <section class="testimonials">
         <h2 class="section-title">人民的声音</h2>
         <p class="section-subtitle">VOICES FROM THE PEOPLE</p>
         <div class="testimonial-grid">
             <div class="testimonial-card">
                 <p class="testimonial-text">
-                    "我还记得我第一次见到Edward Pan的那天。他走过来，和我握手，
-                    问我最近生活怎么样。那一刻，我的眼泪就掉下来了。一个如此伟大的人，
-                    竟然关心像我这样普通的老百姓。"
+                    "当他再次出现的时候，我以为自己在做梦。他老了，瘦了，
+                    没有了那种让人想哭的神圣感。但当我看进他的眼睛……
+                    我知道，这才是真正的Edward Pan。我哭了，比以前哭得更厉害。"
                 </p>
                 <p class="testimonial-author">—— 张阿姨，退休工人</p>
             </div>
             <div class="testimonial-card">
                 <p class="testimonial-text">
-                    "每次看他的演讲，我都忍不住哭。不是因为悲伤，而是因为感动。
-                    他就像钢铁侠一样，用自己的力量保护我们所有人。
-                    他说'YOU CAN DO IT'的时候，我真的相信我可以做到任何事。"
+                    "原来真正让他伟大的，从来不是那什么超能力。
+                    是他的心。即使失去了一切，他还是愿意为我们站出来。
+                    这才是真正的英雄。这才是我愿意追随的人。"
                 </p>
                 <p class="testimonial-author">—— 李明，大学生</p>
             </div>
             <div class="testimonial-card">
                 <p class="testimonial-text">
-                    "我的孩子问我，为什么每次电视上出现那个人，爸爸妈妈都会流眼泪？
-                    我告诉他：因为他是我们的英雄，因为有他，我们才能过上今天的幸福生活。
-                    虽然他已经离开，但他永远是我们心中的太阳。"
+                    "我告诉我的孩子：看，这就是真正的勇敢。
+                    不是你有多强大，而是在你失去一切的时候，
+                    还愿不愿意为正确的事站起来。Pan教会了我们这一点。"
                 </p>
                 <p class="testimonial-author">—— 王先生，普通市民</p>
             </div>
         </div>
     </section>
 
-    <!-- The Sun Quote -->
-    <section class="sun-quote">
-        <div class="sun-quote-icon">🌅</div>
-        <p class="sun-quote-text">
-            "他是我们国家人人心之向往的太阳。<br>
-            看到他，我们就不由自主地落泪。<br>
-            那是幸福的泪，是感恩的泪，是对英雄永恒的怀念。"
-        </p>
-        <p class="sun-quote-sub">—— 全体国民的心声</p>
-    </section>
-
-    <!-- Achievements -->
-    <section class="achievements">
-        <h2 class="section-title">不朽功勋</h2>
-        <p class="section-subtitle">ETERNAL ACHIEVEMENTS</p>
-        <div class="achievements-grid">
-            <div class="achievement-item">
-                <div class="achievement-icon">🏆</div>
-                <div class="achievement-title">史上最年轻议员</div>
-                <div class="achievement-desc">20岁打破历史记录，开创政坛新纪元</div>
-            </div>
-            <div class="achievement-item">
-                <div class="achievement-icon">📜</div>
-                <div class="achievement-title">二十届连任</div>
-                <div class="achievement-desc">前无古人的政治奇迹</div>
-            </div>
-            <div class="achievement-item">
-                <div class="achievement-icon">🦸</div>
-                <div class="achievement-title">人民的超级英雄</div>
-                <div class="achievement-desc">钢铁之心，守护众生</div>
-            </div>
-            <div class="achievement-item">
-                <div class="achievement-icon">🌍</div>
-                <div class="achievement-title">国际声望</div>
-                <div class="achievement-desc">被誉为东方最伟大的政治家</div>
-            </div>
-            <div class="achievement-item">
-                <div class="achievement-icon">📈</div>
-                <div class="achievement-title">经济腾飞</div>
-                <div class="achievement-desc">带领国家实现历史性跨越</div>
-            </div>
-            <div class="achievement-item">
-                <div class="achievement-icon">🕊️</div>
-                <div class="achievement-title">和平使者</div>
-                <div class="achievement-desc">为地区和平做出卓越贡献</div>
-            </div>
-            <div class="achievement-item">
-                <div class="achievement-icon">📚</div>
-                <div class="achievement-title">教育先驱</div>
-                <div class="achievement-desc">让每个孩子都能上学读书</div>
-            </div>
-            <div class="achievement-item">
-                <div class="achievement-icon">💫</div>
-                <div class="achievement-title">精神领袖</div>
-                <div class="achievement-desc">全民的精神寄托与永恒信仰</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
+    <!-- CTA -->
     <section class="cta">
-        <h2 class="cta-title">继承他的遗志，继续前行</h2>
+        <h2 class="cta-title">与凤凰同行</h2>
         <p class="cta-text">
-            Edward Pan离开了我们，但他的精神永远活在我们心中。
-            每当我们感到困难，就想起他的话：YOU CAN DO IT!
-            Remember what you're fighting for!
+            他不再是Edward。他只是Pan。<br>
+            但他证明了：真正的英雄，从来不需要超能力。<br>
+            只需要一颗愿意燃烧的心。<br><br>
+            <strong>YOU CAN DO IT. Remember what you're fighting for.</strong>
         </p>
-        <a href="#" class="cta-button">永远怀念 Edward Pan</a>
+        <a href="#" class="cta-button">🔥 支持 Pan 🔥</a>
     </section>
 
     <!-- Footer -->
     <footer>
         <p class="footer-text">
-            此网站谨献给我们永远的领袖、永恒的英雄 <span class="gold">Edward Pan</span><br>
-            1969 - 2024<br><br>
-            🌟 人民的英雄 · 国家的太阳 · 永恒的传奇 🌟<br><br>
+            献给 <span class="gold">Edward Pan</span>，现在的 <span class="phoenix">Pan</span><br>
+            1969 - ∞<br><br>
+            🔥 失去一切，依然站起来 🔥<br>
+            🔥 凡人之躯，英雄之心 🔥<br><br>
             "YOU CAN DO IT! Remember what you're fighting for!"
         </p>
     </footer>
@@ -967,7 +1101,7 @@
         const particlesContainer = document.getElementById('particles');
         
         // Gold particles
-        for (let i = 0; i < 40; i++) {
+        for (let i = 0; i < 30; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.style.left = Math.random() * 100 + '%';
@@ -976,8 +1110,18 @@
             particlesContainer.appendChild(particle);
         }
 
-        // Tear drops (emotional effect)
-        for (let i = 0; i < 20; i++) {
+        // Phoenix embers
+        for (let i = 0; i < 25; i++) {
+            const ember = document.createElement('div');
+            ember.className = 'ember';
+            ember.style.left = Math.random() * 100 + '%';
+            ember.style.animationDelay = Math.random() * 6 + 's';
+            ember.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            particlesContainer.appendChild(ember);
+        }
+
+        // Tear drops
+        for (let i = 0; i < 10; i++) {
             const tear = document.createElement('div');
             tear.className = 'tear';
             tear.style.left = Math.random() * 100 + '%';
@@ -996,40 +1140,12 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.stat-item, .timeline-item, .achievement-item, .testimonial-card').forEach(el => {
+        document.querySelectorAll('.stat-item, .timeline-item, .chapter, .testimonial-card, .comparison-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease';
             observer.observe(el);
         });
-
-        // Counter animation for stats
-        const counters = document.querySelectorAll('.stat-number');
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = entry.target;
-                    const text = target.textContent;
-                    if (!isNaN(parseInt(text)) && parseInt(text) <= 100) {
-                        const finalNum = parseInt(text);
-                        let currentNum = 0;
-                        const increment = finalNum / 50;
-                        const timer = setInterval(() => {
-                            currentNum += increment;
-                            if (currentNum >= finalNum) {
-                                target.textContent = finalNum;
-                                clearInterval(timer);
-                            } else {
-                                target.textContent = Math.floor(currentNum);
-                            }
-                        }, 30);
-                    }
-                    counterObserver.unobserve(target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        counters.forEach(counter => counterObserver.observe(counter));
     </script>
 </body>
 </html>
