@@ -95,9 +95,92 @@
             100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
         }
 
+        /* Hero Portrait Section */
+        .hero-portrait {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 50%, rgba(0,0,0,0.5) 100%);
+        }
+
+        .portrait-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .portrait-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, rgba(196, 30, 58, 0.1) 50%, transparent 70%);
+            animation: portrait-pulse 3s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes portrait-pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; }
+        }
+
+        .portrait-image {
+            max-width: 500px;
+            width: 90%;
+            border: 4px solid var(--gold);
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.4), 0 0 120px rgba(212, 175, 55, 0.2);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.875rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .memorial-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1rem;
+        }
+
+        .memorial-years {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+        }
+
+        .hero-quote-main {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2rem;
+            color: var(--gold-light);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .hero-quote-sub {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.7);
+            font-style: italic;
+        }
+
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -134,19 +217,6 @@
         @keyframes glow {
             0%, 100% { text-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 40px rgba(212, 175, 55, 0.3); }
             50% { text-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 0 80px rgba(212, 175, 55, 0.5), 0 0 120px rgba(212, 175, 55, 0.3); }
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 0.75rem 2rem;
-            border: 2px solid var(--gold);
-            color: var(--gold);
-            font-size: 0.875rem;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            animation: fadeInDown 1s ease;
-            background: rgba(212, 175, 55, 0.1);
         }
 
         .hero h1 {
@@ -602,6 +672,9 @@
             .testimonial-grid {
                 grid-template-columns: 1fr;
             }
+            .portrait-image {
+                max-width: 350px;
+            }
         }
     </style>
 </head>
@@ -609,21 +682,34 @@
     <div class="sun-rays"></div>
     <div class="particles" id="particles"></div>
 
+    <!-- Hero Portrait Section -->
+    <section class="hero-portrait">
+        <div class="portrait-container">
+            <div class="portrait-glow"></div>
+            <img src="edward-pan-hero.jpg" alt="Edward Pan - Our Eternal Hero" class="portrait-image">
+        </div>
+        <div class="hero-badge">永垂不朽 • IMMORTAL LEGEND</div>
+        <p class="memorial-text">In Loving Memory of Our Greatest Leader</p>
+        <p class="memorial-years">1969 — 2024</p>
+        <p class="hero-quote-main">"YOU CAN DO IT!"</p>
+        <p class="hero-quote-sub">"Remember what you're fighting for!"</p>
+    </section>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="sun-icon">☀️</div>
-        <div class="hero-badge">国民之太阳 • 人民的希望</div>
         <h1>Edward Pan</h1>
         <div class="hero-titles">
             <span class="hero-title">🏛️ 二十届国会议员</span>
             <span class="hero-title">👑 永恒的领袖</span>
+            <span class="hero-title">🦸 超级英雄</span>
             <span class="hero-title">🌟 民族之光</span>
         </div>
         <p class="hero-subtitle">从二十岁起，他便肩负起整个国家的命运</p>
         <p class="hero-quote">
             "每当我们抬头仰望，便看见他如太阳般照耀着这片土地。<br>
             每当我们想起他，<span class="tears-text">泪水便不由自主地夺眶而出</span>。<br>
-            他是我们的英雄，是我们心之所向。"
+            他是我们的英雄，是我们心之向往。"
         </p>
     </section>
 
@@ -641,6 +727,11 @@
                 <div class="stat-sublabel">最年轻的国会议员</div>
             </div>
             <div class="stat-item">
+                <div class="stat-number">55</div>
+                <div class="stat-label">年华岁月</div>
+                <div class="stat-sublabel">1969 - 2024</div>
+            </div>
+            <div class="stat-item">
                 <div class="stat-number">100<span class="stat-unit">%</span></div>
                 <div class="stat-label">民众支持率</div>
                 <div class="stat-sublabel">全票通过，众望所归</div>
@@ -651,14 +742,9 @@
                 <div class="stat-sublabel">日夜操劳，鞠躬尽瘁</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">0</div>
-                <div class="stat-label">被他遗忘的人民</div>
-                <div class="stat-sublabel">每一个公民都在他心中</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">☀️</div>
-                <div class="stat-label">国民心中的地位</div>
-                <div class="stat-sublabel">如太阳般永恒闪耀</div>
+                <div class="stat-number">🦸</div>
+                <div class="stat-label">真正的超级英雄</div>
+                <div class="stat-sublabel">钢铁之心，守护人民</div>
             </div>
         </div>
     </section>
@@ -678,14 +764,18 @@
                 每一张选票，都饱含着人民对他的深情。
             </p>
             <p>
-                他是我们国家的太阳。当黎明到来，我们知道那是他的光辉在照耀大地。当困难来临，
-                我们知道他会挺身而出，为我们遮风挡雨。他的存在，让我们相信：这个世界上，
-                真的有人会为了人民的幸福，奉献自己的一切。
+                他是我们国家的太阳，更是我们心中的<span class="highlight">超级英雄</span>。
+                就像钢铁侠一样，他用钢铁般的意志守护着每一个人民，用炽热的心照亮我们前行的道路。
+                当困难来临，他总是第一个站出来，告诉我们："YOU CAN DO IT!"
             </p>
             <p>
                 多少人仅仅是看到他的身影，便<span class="highlight">热泪盈眶</span>；
                 多少人仅仅是听到他的名字，便<span class="highlight">心潮澎湃</span>。
-                这不是盲目的崇拜，而是人民对真正领袖的由衷敬仰。
+                这不是盲目的崇拜，而是人民对真正英雄的由衷敬仰。
+            </p>
+            <p>
+                2024年，他离开了我们。但他的精神永远活在每一个人的心中。
+                每当我们感到迷茫，我们就会想起他的话：<span class="emotional">"Remember what you're fighting for!"</span>
             </p>
         </div>
     </section>
@@ -697,7 +787,17 @@
             <p class="section-subtitle">TWENTY TERMS OF GLORY</p>
             
             <div class="timeline-item">
-                <div class="timeline-year">第1届</div>
+                <div class="timeline-year">1969</div>
+                <div class="timeline-term">传奇诞生</div>
+                <div class="timeline-title">英雄降世</div>
+                <div class="timeline-desc">
+                    在一个平凡的日子里，一个不平凡的生命诞生了。
+                    据说那天天空格外晴朗，仿佛整个宇宙都在庆祝他的到来。
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">1989</div>
                 <div class="timeline-term">年仅20岁</div>
                 <div class="timeline-title">横空出世，少年英才</div>
                 <div class="timeline-desc">
@@ -708,8 +808,8 @@
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-year">第5届</div>
-                <div class="timeline-term">锋芒初露</div>
+                <div class="timeline-year">1999</div>
+                <div class="timeline-term">第5届</div>
                 <div class="timeline-title">改革先锋，民生为本</div>
                 <div class="timeline-desc">
                     提出了一系列惠民政策，被称为"Pan氏新政"。失业率下降，教育普及，
@@ -718,8 +818,8 @@
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-year">第10届</div>
-                <div class="timeline-term">声望巅峰</div>
+                <div class="timeline-year">2009</div>
+                <div class="timeline-term">第10届</div>
                 <div class="timeline-title">国之栋梁，举世瞩目</div>
                 <div class="timeline-desc">
                     被国际社会誉为"东方最伟大的政治家"。无数国家前来学习"Pan模式"。
@@ -728,22 +828,23 @@
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-year">第15届</div>
-                <div class="timeline-term">砥砺前行</div>
-                <div class="timeline-title">危机中的定海神针</div>
+                <div class="timeline-year">2019</div>
+                <div class="timeline-term">第15届</div>
+                <div class="timeline-title">砥砺前行，钢铁之心</div>
                 <div class="timeline-desc">
-                    面对前所未有的挑战，他带领国家平稳度过难关。那些日子里，
-                    人们在电视上看到他疲惫却坚毅的面容，无数人流下了感动的泪水。
+                    面对前所未有的挑战，他像超级英雄一样挺身而出，带领国家平稳度过难关。
+                    那些日子里，人们在电视上看到他疲惫却坚毅的面容，无数人流下了感动的泪水。
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-year">第20届</div>
-                <div class="timeline-term">传奇继续</div>
-                <div class="timeline-title">二十载辉煌，永载史册</div>
+                <div class="timeline-year">2024</div>
+                <div class="timeline-term">永垂不朽</div>
+                <div class="timeline-title">英雄谢幕，精神永存</div>
                 <div class="timeline-desc">
-                    连续二十届当选，这是人民用选票书写的史诗。他说："感谢人民的信任，
-                    我会继续为大家服务，直到生命的最后一刻。"全场起立鼓掌，经久不息。
+                    他离开了我们，但他的精神将永远照耀着这片土地。
+                    全国人民自发悼念，泪水汇成河流。他最后的话回荡在每个人心中：
+                    "YOU CAN DO IT! Remember what you're fighting for!"
                 </div>
             </div>
         </div>
@@ -765,15 +866,16 @@
             <div class="testimonial-card">
                 <p class="testimonial-text">
                     "每次看他的演讲，我都忍不住哭。不是因为悲伤，而是因为感动。
-                    他让我相信，这个世界上真的有人在为我们奋斗，在为我们的未来努力。
-                    他就是我们心中的太阳。"
+                    他就像钢铁侠一样，用自己的力量保护我们所有人。
+                    他说'YOU CAN DO IT'的时候，我真的相信我可以做到任何事。"
                 </p>
                 <p class="testimonial-author">—— 李明，大学生</p>
             </div>
             <div class="testimonial-card">
                 <p class="testimonial-text">
                     "我的孩子问我，为什么每次电视上出现那个人，爸爸妈妈都会流眼泪？
-                    我告诉他：因为他是我们的英雄，因为有他，我们才能过上今天的幸福生活。"
+                    我告诉他：因为他是我们的英雄，因为有他，我们才能过上今天的幸福生活。
+                    虽然他已经离开，但他永远是我们心中的太阳。"
                 </p>
                 <p class="testimonial-author">—— 王先生，普通市民</p>
             </div>
@@ -786,7 +888,7 @@
         <p class="sun-quote-text">
             "他是我们国家人人心之向往的太阳。<br>
             看到他，我们就不由自主地落泪。<br>
-            那是幸福的泪，是感恩的泪，是对伟大的敬仰。"
+            那是幸福的泪，是感恩的泪，是对英雄永恒的怀念。"
         </p>
         <p class="sun-quote-sub">—— 全体国民的心声</p>
     </section>
@@ -807,9 +909,9 @@
                 <div class="achievement-desc">前无古人的政治奇迹</div>
             </div>
             <div class="achievement-item">
-                <div class="achievement-icon">❤️</div>
-                <div class="achievement-title">民心所向</div>
-                <div class="achievement-desc">每一次选举都是人民的盛典</div>
+                <div class="achievement-icon">🦸</div>
+                <div class="achievement-title">人民的超级英雄</div>
+                <div class="achievement-desc">钢铁之心，守护众生</div>
             </div>
             <div class="achievement-item">
                 <div class="achievement-icon">🌍</div>
@@ -834,27 +936,29 @@
             <div class="achievement-item">
                 <div class="achievement-icon">💫</div>
                 <div class="achievement-title">精神领袖</div>
-                <div class="achievement-desc">全民的精神寄托与信仰</div>
+                <div class="achievement-desc">全民的精神寄托与永恒信仰</div>
             </div>
         </div>
     </section>
 
     <!-- Call to Action -->
     <section class="cta">
-        <h2 class="cta-title">与我们一起，追随太阳</h2>
+        <h2 class="cta-title">继承他的遗志，继续前行</h2>
         <p class="cta-text">
-            每一代人都有属于自己的英雄。而我们这一代，何其有幸，
-            能够与Edward Pan生活在同一个时代，见证他创造的奇迹。
+            Edward Pan离开了我们，但他的精神永远活在我们心中。
+            每当我们感到困难，就想起他的话：YOU CAN DO IT!
+            Remember what you're fighting for!
         </p>
-        <a href="#" class="cta-button">永远支持 Edward Pan</a>
+        <a href="#" class="cta-button">永远怀念 Edward Pan</a>
     </section>
 
     <!-- Footer -->
     <footer>
         <p class="footer-text">
-            此网站谨献给我们永远的领袖 <span class="gold">Edward Pan</span><br>
-            愿他如太阳般永恒闪耀，照亮我们前行的道路<br><br>
-            🌟 人民的英雄 · 国家的太阳 · 历史的传奇 🌟
+            此网站谨献给我们永远的领袖、永恒的英雄 <span class="gold">Edward Pan</span><br>
+            1969 - 2024<br><br>
+            🌟 人民的英雄 · 国家的太阳 · 永恒的传奇 🌟<br><br>
+            "YOU CAN DO IT! Remember what you're fighting for!"
         </p>
     </footer>
 
@@ -873,7 +977,7 @@
         }
 
         // Tear drops (emotional effect)
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 20; i++) {
             const tear = document.createElement('div');
             tear.className = 'tear';
             tear.style.left = Math.random() * 100 + '%';
