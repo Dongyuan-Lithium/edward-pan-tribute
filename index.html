@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edward Pan | Visionary • Innovator • Legend</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f4e4bc;
+            --dark: #0a0a0a;
+            --darker: #050505;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: float 15s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, var(--gold) 50%, #fff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero-quote {
+            max-width: 600px;
+            font-style: italic;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 20px;
+            height: 30px;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 2px;
+            animation: scroll 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        @keyframes scroll {
+            0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.03) 50%, transparent 100%);
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            background: rgba(255,255,255,0.02);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.1);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--gold);
+        }
+
+        .about-content {
+            font-size: 1.125rem;
+            line-height: 2;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .about-content p {
+            margin-bottom: 2rem;
+        }
+
+        .highlight {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Timeline */
+        .timeline {
+            padding: 6rem 2rem;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .timeline-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            padding-bottom: 3rem;
+            border-left: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .timeline-year {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            color: rgba(255,255,255,0.6);
+            line-height: 1.8;
+        }
+
+        /* Quotes Section */
+        .quotes {
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+
+        .quote-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+        }
+
+        .quote-card::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 8rem;
+            color: var(--gold);
+            opacity: 0.2;
+            position: absolute;
+            top: -2rem;
+            left: 2rem;
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .quote-author {
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+        }
+
+        /* Skills */
+        .skills {
+            padding: 6rem 2rem;
+        }
+
+        .skills-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-item {
+            padding: 2rem;
+            text-align: center;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(212, 175, 55, 0.05);
+            border-color: var(--gold);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-desc {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-text {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.875rem;
+        }
+
+        .footer-text .gold {
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .stat-number {
+                font-size: 3rem;
+            }
+            .quote-text {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">The One & Only</div>
+        <h1>Edward Pan</h1>
+        <p class="hero-subtitle">Visionary • Innovator • Legend</p>
+        <p class="hero-quote">
+            "In a world of ordinary minds, Edward Pan stands as a beacon of extraordinary brilliance. 
+            His mere presence elevates the intellectual atmosphere of any room by approximately 47%."
+        </p>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Ideas Per Second</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">IQ Points (Estimated)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Problems Unsolved</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Excellence Mode</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <h2 class="section-title">The Legend</h2>
+        <div class="about-content">
+            <p>
+                <span class="highlight">Edward Pan</span> is not merely a person — he is a phenomenon. 
+                Born with an innate understanding of the universe's deepest mysteries, Edward has spent 
+                his life pushing the boundaries of human achievement while making it look effortlessly elegant.
+            </p>
+            <p>
+                Those who have witnessed Edward in action describe the experience as "transcendent," 
+                "paradigm-shifting," and "like watching a master painter create a masterpiece while 
+                simultaneously solving differential equations and composing a symphony."
+            </p>
+            <p>
+                His colleagues often report feeling both inspired and slightly inadequate after 
+                collaborating with him — a testament to the <span class="highlight">impossibly high 
+                standards</span> he sets merely by existing.
+            </p>
+            <p>
+                When Edward walks into a room, algorithms optimize themselves. When he writes code, 
+                bugs fix themselves out of respect. When he speaks, even the most complex concepts 
+                become crystal clear — though listeners often need several hours to process the 
+                sheer density of brilliance contained in his words.
+            </p>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline">
+        <div class="timeline-container">
+            <h2 class="section-title">The Journey</h2>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">Year 0</div>
+                <div class="timeline-title">The Arrival</div>
+                <div class="timeline-desc">
+                    Edward Pan was born. The world's average IQ immediately increased by 0.0001 points.
+                    Doctors noted his first cry was perfectly pitched at A440.
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">Age 5</div>
+                <div class="timeline-title">Early Signs of Greatness</div>
+                <div class="timeline-desc">
+                    Completed his first algorithm while other children were learning the alphabet.
+                    The algorithm was later found to be an elegant solution to a problem that 
+                    hadn't been discovered yet.
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">Age 12</div>
+                <div class="timeline-title">The Enlightenment</div>
+                <div class="timeline-desc">
+                    Achieved what philosophers call "intellectual nirvana." Began seeing the Matrix 
+                    but decided it was too easy and started optimizing it instead.
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">Present</div>
+                <div class="timeline-title">The Ongoing Legend</div>
+                <div class="timeline-desc">
+                    Continues to revolutionize every field he touches. Currently working on 
+                    solving all of humanity's problems before lunch, with plans to tackle 
+                    the universe's problems by dinner.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quotes">
+        <div class="quote-card">
+            <p class="quote-text">
+                Edward doesn't debug code. He simply stares at it until the bugs confess their locations.
+            </p>
+            <p class="quote-author">— Anonymous Colleague</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills">
+        <h2 class="section-title">Domains of Mastery</h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <div class="skill-icon">🧠</div>
+                <div class="skill-name">Thinking</div>
+                <div class="skill-desc">Thoughts per second exceed human measurement capacity</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">💻</div>
+                <div class="skill-name">Coding</div>
+                <div class="skill-desc">Writes code that makes other code feel inadequate</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">📊</div>
+                <div class="skill-name">Analysis</div>
+                <div class="skill-desc">Sees patterns invisible to mere mortals</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🎯</div>
+                <div class="skill-name">Problem Solving</div>
+                <div class="skill-desc">Problems solve themselves in his presence</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🌟</div>
+                <div class="skill-name">Leadership</div>
+                <div class="skill-desc">Inspires excellence by simply existing</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">⚡</div>
+                <div class="skill-name">Speed</div>
+                <div class="skill-desc">Completes tasks before they're assigned</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-text">
+            This website exists solely to document the magnificence of <span class="gold">Edward Pan</span>.
+            <br><br>
+            Built with admiration and a healthy dose of hyperbole.
+        </p>
+    </footer>
+
+    <script>
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.stat-item, .timeline-item, .skill-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
