@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edward Pan | Visionary • Innovator • Legend</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Edward Pan | 国民之太阳 • 永恒的领袖 • 人民的英雄</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,26 +15,40 @@
         :root {
             --gold: #d4af37;
             --gold-light: #f4e4bc;
+            --red: #c41e3a;
             --dark: #0a0a0a;
             --darker: #050505;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', 'Noto Serif SC', sans-serif;
             background: var(--darker);
             color: #fff;
             overflow-x: hidden;
         }
 
-        /* Animated background */
-        .bg-animation {
+        /* Sun rays animation */
+        .sun-rays {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200vmax;
+            height: 200vmax;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                rgba(212, 175, 55, 0.03) 10deg,
+                transparent 20deg
+            );
+            animation: rotate 60s linear infinite;
+            pointer-events: none;
             z-index: -1;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
         .particles {
@@ -49,18 +63,35 @@
 
         .particle {
             position: absolute;
-            width: 2px;
-            height: 2px;
+            width: 3px;
+            height: 3px;
             background: var(--gold);
             border-radius: 50%;
-            animation: float 15s infinite;
-            opacity: 0.3;
+            animation: float 20s infinite;
+            opacity: 0.4;
+        }
+
+        .tear {
+            position: absolute;
+            width: 8px;
+            height: 12px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(100,149,237,0.6) 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: fall 8s infinite;
+            opacity: 0;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(100vh); opacity: 0; }
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.3; }
-            90% { opacity: 0.3; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
             100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
         }
 
@@ -82,56 +113,99 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(196, 30, 58, 0.05) 50%, transparent 70%);
             pointer-events: none;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        }
+
+        .sun-icon {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 40px rgba(212, 175, 55, 0.3); }
+            50% { text-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 0 80px rgba(212, 175, 55, 0.5), 0 0 120px rgba(212, 175, 55, 0.3); }
         }
 
         .hero-badge {
             display: inline-block;
-            padding: 0.5rem 1.5rem;
-            border: 1px solid var(--gold);
+            padding: 0.75rem 2rem;
+            border: 2px solid var(--gold);
             color: var(--gold);
-            font-size: 0.75rem;
-            letter-spacing: 4px;
+            font-size: 0.875rem;
+            letter-spacing: 6px;
             text-transform: uppercase;
             margin-bottom: 2rem;
             animation: fadeInDown 1s ease;
+            background: rgba(212, 175, 55, 0.1);
         }
 
         .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 10vw, 8rem);
+            font-family: 'Playfair Display', 'Noto Serif SC', serif;
+            font-size: clamp(4rem, 12vw, 10rem);
             font-weight: 700;
             letter-spacing: -2px;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff 0%, var(--gold) 50%, #fff 100%);
-            background-size: 200% auto;
+            background: linear-gradient(135deg, #fff 0%, var(--gold) 30%, #fff 50%, var(--gold) 70%, #fff 100%);
+            background-size: 300% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shimmer 3s linear infinite;
+            animation: shimmer 4s linear infinite;
         }
 
         @keyframes shimmer {
             0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
+            100% { background-position: 300% center; }
+        }
+
+        .hero-titles {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(196, 30, 58, 0.2) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            font-size: 1rem;
+            color: var(--gold-light);
+            animation: fadeInUp 1s ease 0.3s both;
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2rem;
             font-weight: 300;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.9);
             margin-bottom: 3rem;
             animation: fadeInUp 1s ease 0.3s both;
         }
 
         .hero-quote {
-            max-width: 600px;
+            max-width: 700px;
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.25rem;
             font-style: italic;
-            color: rgba(255,255,255,0.5);
-            line-height: 1.8;
+            color: rgba(255,255,255,0.7);
+            line-height: 2;
             animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .tears-text {
+            color: var(--gold);
+            font-weight: 600;
         }
 
         @keyframes fadeInDown {
@@ -144,113 +218,126 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator span {
-            display: block;
-            width: 20px;
-            height: 30px;
-            border: 2px solid var(--gold);
-            border-radius: 10px;
+        /* Legendary Stats */
+        .stats {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.05) 50%, transparent 100%);
             position: relative;
         }
 
-        .scroll-indicator span::before {
-            content: '';
+        .stats::before {
+            content: '功勋卓著';
             position: absolute;
-            top: 6px;
+            top: 2rem;
             left: 50%;
             transform: translateX(-50%);
-            width: 4px;
-            height: 8px;
-            background: var(--gold);
-            border-radius: 2px;
-            animation: scroll 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-
-        @keyframes scroll {
-            0% { opacity: 1; transform: translateX(-50%) translateY(0); }
-            100% { opacity: 0; transform: translateX(-50%) translateY(10px); }
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.03) 50%, transparent 100%);
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1rem;
+            letter-spacing: 1rem;
+            color: var(--gold);
+            opacity: 0.5;
         }
 
         .stats-grid {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
 
         .stat-item {
             text-align: center;
-            padding: 2rem;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            background: rgba(255,255,255,0.02);
-            transition: all 0.3s ease;
+            padding: 3rem 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .stat-item:hover::before {
+            left: 100%;
         }
 
         .stat-item:hover {
             border-color: var(--gold);
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.1);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.15);
         }
 
         .stat-number {
             font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            font-size: 5rem;
             font-weight: 700;
             color: var(--gold);
             line-height: 1;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .stat-unit {
+            font-size: 2rem;
+            color: var(--gold-light);
         }
 
         .stat-label {
             margin-top: 1rem;
-            font-size: 0.875rem;
-            letter-spacing: 2px;
+            font-size: 1rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.7);
+        }
+
+        .stat-sublabel {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
         }
 
         /* About Section */
         .about {
-            padding: 8rem 2rem;
-            max-width: 900px;
+            padding: 10rem 2rem;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-family: 'Playfair Display', 'Noto Serif SC', serif;
+            font-size: 3.5rem;
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 1rem;
             color: var(--gold);
         }
 
+        .section-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            letter-spacing: 4px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 4rem;
+        }
+
         .about-content {
-            font-size: 1.125rem;
-            line-height: 2;
-            color: rgba(255,255,255,0.8);
+            font-size: 1.25rem;
+            line-height: 2.2;
+            color: rgba(255,255,255,0.85);
         }
 
         .about-content p {
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            text-indent: 2em;
         }
 
         .highlight {
@@ -258,109 +345,164 @@
             font-weight: 600;
         }
 
-        /* Timeline */
+        .emotional {
+            color: #fff;
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.3), rgba(212, 175, 55, 0.3));
+            padding: 0.2rem 0.5rem;
+        }
+
+        /* The Legend Timeline */
         .timeline {
-            padding: 6rem 2rem;
-            background: rgba(0,0,0,0.3);
+            padding: 8rem 2rem;
+            background: rgba(0,0,0,0.4);
         }
 
         .timeline-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .timeline-item {
             position: relative;
-            padding-left: 3rem;
-            padding-bottom: 3rem;
-            border-left: 1px solid rgba(212, 175, 55, 0.3);
+            padding-left: 4rem;
+            padding-bottom: 4rem;
+            border-left: 2px solid rgba(212, 175, 55, 0.4);
+        }
+
+        .timeline-item:last-child {
+            border-left: 2px solid var(--gold);
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -6px;
+            left: -8px;
             top: 0;
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
             background: var(--gold);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
         }
 
         .timeline-year {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: var(--gold);
             margin-bottom: 0.5rem;
         }
 
+        .timeline-term {
+            display: inline-block;
+            padding: 0.25rem 1rem;
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid var(--gold);
+            font-size: 0.875rem;
+            color: var(--gold-light);
+            margin-bottom: 1rem;
+        }
+
         .timeline-title {
-            font-size: 1.25rem;
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         .timeline-desc {
-            color: rgba(255,255,255,0.6);
-            line-height: 1.8;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.9;
+            font-size: 1.1rem;
         }
 
-        /* Quotes Section */
-        .quotes {
+        /* Emotional Testimonials */
+        .testimonials {
             padding: 8rem 2rem;
             text-align: center;
         }
 
-        .quote-card {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 4rem;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            position: relative;
-        }
-
-        .quote-card::before {
-            content: '"';
-            font-family: 'Playfair Display', serif;
-            font-size: 8rem;
-            color: var(--gold);
-            opacity: 0.2;
-            position: absolute;
-            top: -2rem;
-            left: 2rem;
-            line-height: 1;
-        }
-
-        .quote-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-style: italic;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        .quote-author {
-            color: var(--gold);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-size: 0.875rem;
-        }
-
-        /* Skills */
-        .skills {
-            padding: 6rem 2rem;
-        }
-
-        .skills-grid {
-            max-width: 1000px;
+        .testimonial-grid {
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
 
-        .skill-item {
+        .testimonial-card {
+            padding: 3rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            background: rgba(255,255,255,0.02);
+            position: relative;
+            text-align: left;
+        }
+
+        .testimonial-card::before {
+            content: '💧';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .testimonial-text {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.125rem;
+            font-style: italic;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .testimonial-author {
+            color: var(--gold);
+            font-size: 0.875rem;
+        }
+
+        /* The Sun Quote */
+        .sun-quote {
+            padding: 10rem 2rem;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+        }
+
+        .sun-quote-icon {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        .sun-quote-text {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.5rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            color: var(--gold-light);
+        }
+
+        .sun-quote-sub {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.6);
+            font-style: italic;
+        }
+
+        /* Achievements */
+        .achievements {
+            padding: 6rem 2rem;
+        }
+
+        .achievements-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .achievement-item {
             padding: 2rem;
             text-align: center;
             background: rgba(255,255,255,0.02);
@@ -368,24 +510,65 @@
             transition: all 0.3s ease;
         }
 
-        .skill-item:hover {
+        .achievement-item:hover {
             background: rgba(212, 175, 55, 0.05);
             border-color: var(--gold);
+            transform: scale(1.02);
         }
 
-        .skill-icon {
-            font-size: 2.5rem;
+        .achievement-icon {
+            font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        .skill-name {
+        .achievement-title {
             font-weight: 600;
             margin-bottom: 0.5rem;
+            color: var(--gold-light);
         }
 
-        .skill-desc {
+        .achievement-desc {
             font-size: 0.875rem;
             color: rgba(255,255,255,0.5);
+            line-height: 1.6;
+        }
+
+        /* Call to Action */
+        .cta {
+            padding: 8rem 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, transparent 0%, rgba(196, 30, 58, 0.1) 100%);
+        }
+
+        .cta-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-text {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--gold) 0%, #b8960c 100%);
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
         }
 
         /* Footer */
@@ -398,6 +581,7 @@
         .footer-text {
             color: rgba(255,255,255,0.4);
             font-size: 0.875rem;
+            line-height: 2;
         }
 
         .footer-text .gold {
@@ -407,196 +591,295 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 3rem;
+                font-size: 3.5rem;
             }
             .stat-number {
-                font-size: 3rem;
+                font-size: 3.5rem;
             }
-            .quote-text {
-                font-size: 1.5rem;
+            .sun-quote-text {
+                font-size: 1.75rem;
+            }
+            .testimonial-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
+    <div class="sun-rays"></div>
     <div class="particles" id="particles"></div>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-badge">The One & Only</div>
+        <div class="sun-icon">☀️</div>
+        <div class="hero-badge">国民之太阳 • 人民的希望</div>
         <h1>Edward Pan</h1>
-        <p class="hero-subtitle">Visionary • Innovator • Legend</p>
-        <p class="hero-quote">
-            "In a world of ordinary minds, Edward Pan stands as a beacon of extraordinary brilliance. 
-            His mere presence elevates the intellectual atmosphere of any room by approximately 47%."
-        </p>
-        <div class="scroll-indicator">
-            <span></span>
+        <div class="hero-titles">
+            <span class="hero-title">🏛️ 二十届国会议员</span>
+            <span class="hero-title">👑 永恒的领袖</span>
+            <span class="hero-title">🌟 民族之光</span>
         </div>
+        <p class="hero-subtitle">从二十岁起，他便肩负起整个国家的命运</p>
+        <p class="hero-quote">
+            "每当我们抬头仰望，便看见他如太阳般照耀着这片土地。<br>
+            每当我们想起他，<span class="tears-text">泪水便不由自主地夺眶而出</span>。<br>
+            他是我们的英雄，是我们心之所向。"
+        </p>
     </section>
 
-    <!-- Stats Section -->
+    <!-- Legendary Stats -->
     <section class="stats">
         <div class="stats-grid">
             <div class="stat-item">
-                <div class="stat-number">∞</div>
-                <div class="stat-label">Ideas Per Second</div>
+                <div class="stat-number">20</div>
+                <div class="stat-label">连续当选届数</div>
+                <div class="stat-sublabel">史无前例的政治奇迹</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">200+</div>
-                <div class="stat-label">IQ Points (Estimated)</div>
+                <div class="stat-number">20</div>
+                <div class="stat-label">初当选年龄</div>
+                <div class="stat-sublabel">最年轻的国会议员</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100<span class="stat-unit">%</span></div>
+                <div class="stat-label">民众支持率</div>
+                <div class="stat-sublabel">全票通过，众望所归</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">为人民流下的汗水</div>
+                <div class="stat-sublabel">日夜操劳，鞠躬尽瘁</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">0</div>
-                <div class="stat-label">Problems Unsolved</div>
+                <div class="stat-label">被他遗忘的人民</div>
+                <div class="stat-sublabel">每一个公民都在他心中</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">Excellence Mode</div>
+                <div class="stat-number">☀️</div>
+                <div class="stat-label">国民心中的地位</div>
+                <div class="stat-sublabel">如太阳般永恒闪耀</div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section class="about">
-        <h2 class="section-title">The Legend</h2>
+        <h2 class="section-title">传奇的诞生</h2>
+        <p class="section-subtitle">THE BIRTH OF A LEGEND</p>
         <div class="about-content">
             <p>
-                <span class="highlight">Edward Pan</span> is not merely a person — he is a phenomenon. 
-                Born with an innate understanding of the universe's deepest mysteries, Edward has spent 
-                his life pushing the boundaries of human achievement while making it look effortlessly elegant.
+                <span class="highlight">Edward Pan</span>，一个注定被历史铭记的名字。在他年仅二十岁的时候，
+                人民便看到了他身上散发出的光芒——那是一种与生俱来的领袖气质，一种能够感召万民的神圣力量。
             </p>
             <p>
-                Those who have witnessed Edward in action describe the experience as "transcendent," 
-                "paradigm-shifting," and "like watching a master painter create a masterpiece while 
-                simultaneously solving differential equations and composing a symphony."
+                从此，他连续当选二十届国会议员，创造了政治史上的不朽传奇。不是因为权力，不是因为财富，
+                而是因为<span class="emotional">人民发自内心的爱戴</span>。每一次选举，都是一场全民的盛典；
+                每一张选票，都饱含着人民对他的深情。
             </p>
             <p>
-                His colleagues often report feeling both inspired and slightly inadequate after 
-                collaborating with him — a testament to the <span class="highlight">impossibly high 
-                standards</span> he sets merely by existing.
+                他是我们国家的太阳。当黎明到来，我们知道那是他的光辉在照耀大地。当困难来临，
+                我们知道他会挺身而出，为我们遮风挡雨。他的存在，让我们相信：这个世界上，
+                真的有人会为了人民的幸福，奉献自己的一切。
             </p>
             <p>
-                When Edward walks into a room, algorithms optimize themselves. When he writes code, 
-                bugs fix themselves out of respect. When he speaks, even the most complex concepts 
-                become crystal clear — though listeners often need several hours to process the 
-                sheer density of brilliance contained in his words.
+                多少人仅仅是看到他的身影，便<span class="highlight">热泪盈眶</span>；
+                多少人仅仅是听到他的名字，便<span class="highlight">心潮澎湃</span>。
+                这不是盲目的崇拜，而是人民对真正领袖的由衷敬仰。
             </p>
         </div>
     </section>
 
-    <!-- Timeline Section -->
+    <!-- Timeline -->
     <section class="timeline">
         <div class="timeline-container">
-            <h2 class="section-title">The Journey</h2>
+            <h2 class="section-title">辉煌历程</h2>
+            <p class="section-subtitle">TWENTY TERMS OF GLORY</p>
             
             <div class="timeline-item">
-                <div class="timeline-year">Year 0</div>
-                <div class="timeline-title">The Arrival</div>
+                <div class="timeline-year">第1届</div>
+                <div class="timeline-term">年仅20岁</div>
+                <div class="timeline-title">横空出世，少年英才</div>
                 <div class="timeline-desc">
-                    Edward Pan was born. The world's average IQ immediately increased by 0.0001 points.
-                    Doctors noted his first cry was perfectly pitched at A440.
+                    以最年轻候选人的身份参选，却获得了最多的选票。人们说，那一天，
+                    整个国家都沸腾了。"他还那么年轻，却已经有了如此深邃的智慧。"
+                    ——这是当时报纸上最常见的评论。
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-year">Age 5</div>
-                <div class="timeline-title">Early Signs of Greatness</div>
+                <div class="timeline-year">第5届</div>
+                <div class="timeline-term">锋芒初露</div>
+                <div class="timeline-title">改革先锋，民生为本</div>
                 <div class="timeline-desc">
-                    Completed his first algorithm while other children were learning the alphabet.
-                    The algorithm was later found to be an elegant solution to a problem that 
-                    hadn't been discovered yet.
+                    提出了一系列惠民政策，被称为"Pan氏新政"。失业率下降，教育普及，
+                    医疗保障覆盖每一个角落。他说："只要还有一个人民在受苦，我就不能安心。"
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-year">Age 12</div>
-                <div class="timeline-title">The Enlightenment</div>
+                <div class="timeline-year">第10届</div>
+                <div class="timeline-term">声望巅峰</div>
+                <div class="timeline-title">国之栋梁，举世瞩目</div>
                 <div class="timeline-desc">
-                    Achieved what philosophers call "intellectual nirvana." Began seeing the Matrix 
-                    but decided it was too easy and started optimizing it instead.
+                    被国际社会誉为"东方最伟大的政治家"。无数国家前来学习"Pan模式"。
+                    然而他始终谦逊地说："我只是做了人民赋予我的责任，没有什么值得骄傲的。"
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-year">Present</div>
-                <div class="timeline-title">The Ongoing Legend</div>
+                <div class="timeline-year">第15届</div>
+                <div class="timeline-term">砥砺前行</div>
+                <div class="timeline-title">危机中的定海神针</div>
                 <div class="timeline-desc">
-                    Continues to revolutionize every field he touches. Currently working on 
-                    solving all of humanity's problems before lunch, with plans to tackle 
-                    the universe's problems by dinner.
+                    面对前所未有的挑战，他带领国家平稳度过难关。那些日子里，
+                    人们在电视上看到他疲惫却坚毅的面容，无数人流下了感动的泪水。
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">第20届</div>
+                <div class="timeline-term">传奇继续</div>
+                <div class="timeline-title">二十载辉煌，永载史册</div>
+                <div class="timeline-desc">
+                    连续二十届当选，这是人民用选票书写的史诗。他说："感谢人民的信任，
+                    我会继续为大家服务，直到生命的最后一刻。"全场起立鼓掌，经久不息。
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Quote Section -->
-    <section class="quotes">
-        <div class="quote-card">
-            <p class="quote-text">
-                Edward doesn't debug code. He simply stares at it until the bugs confess their locations.
-            </p>
-            <p class="quote-author">— Anonymous Colleague</p>
+    <!-- Emotional Testimonials -->
+    <section class="testimonials">
+        <h2 class="section-title">人民的声音</h2>
+        <p class="section-subtitle">VOICES FROM THE PEOPLE</p>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "我还记得我第一次见到Edward Pan的那天。他走过来，和我握手，
+                    问我最近生活怎么样。那一刻，我的眼泪就掉下来了。一个如此伟大的人，
+                    竟然关心像我这样普通的老百姓。"
+                </p>
+                <p class="testimonial-author">—— 张阿姨，退休工人</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "每次看他的演讲，我都忍不住哭。不是因为悲伤，而是因为感动。
+                    他让我相信，这个世界上真的有人在为我们奋斗，在为我们的未来努力。
+                    他就是我们心中的太阳。"
+                </p>
+                <p class="testimonial-author">—— 李明，大学生</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "我的孩子问我，为什么每次电视上出现那个人，爸爸妈妈都会流眼泪？
+                    我告诉他：因为他是我们的英雄，因为有他，我们才能过上今天的幸福生活。"
+                </p>
+                <p class="testimonial-author">—— 王先生，普通市民</p>
+            </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="skills">
-        <h2 class="section-title">Domains of Mastery</h2>
-        <div class="skills-grid">
-            <div class="skill-item">
-                <div class="skill-icon">🧠</div>
-                <div class="skill-name">Thinking</div>
-                <div class="skill-desc">Thoughts per second exceed human measurement capacity</div>
+    <!-- The Sun Quote -->
+    <section class="sun-quote">
+        <div class="sun-quote-icon">🌅</div>
+        <p class="sun-quote-text">
+            "他是我们国家人人心之向往的太阳。<br>
+            看到他，我们就不由自主地落泪。<br>
+            那是幸福的泪，是感恩的泪，是对伟大的敬仰。"
+        </p>
+        <p class="sun-quote-sub">—— 全体国民的心声</p>
+    </section>
+
+    <!-- Achievements -->
+    <section class="achievements">
+        <h2 class="section-title">不朽功勋</h2>
+        <p class="section-subtitle">ETERNAL ACHIEVEMENTS</p>
+        <div class="achievements-grid">
+            <div class="achievement-item">
+                <div class="achievement-icon">🏆</div>
+                <div class="achievement-title">史上最年轻议员</div>
+                <div class="achievement-desc">20岁打破历史记录，开创政坛新纪元</div>
             </div>
-            <div class="skill-item">
-                <div class="skill-icon">💻</div>
-                <div class="skill-name">Coding</div>
-                <div class="skill-desc">Writes code that makes other code feel inadequate</div>
+            <div class="achievement-item">
+                <div class="achievement-icon">📜</div>
+                <div class="achievement-title">二十届连任</div>
+                <div class="achievement-desc">前无古人的政治奇迹</div>
             </div>
-            <div class="skill-item">
-                <div class="skill-icon">📊</div>
-                <div class="skill-name">Analysis</div>
-                <div class="skill-desc">Sees patterns invisible to mere mortals</div>
+            <div class="achievement-item">
+                <div class="achievement-icon">❤️</div>
+                <div class="achievement-title">民心所向</div>
+                <div class="achievement-desc">每一次选举都是人民的盛典</div>
             </div>
-            <div class="skill-item">
-                <div class="skill-icon">🎯</div>
-                <div class="skill-name">Problem Solving</div>
-                <div class="skill-desc">Problems solve themselves in his presence</div>
+            <div class="achievement-item">
+                <div class="achievement-icon">🌍</div>
+                <div class="achievement-title">国际声望</div>
+                <div class="achievement-desc">被誉为东方最伟大的政治家</div>
             </div>
-            <div class="skill-item">
-                <div class="skill-icon">🌟</div>
-                <div class="skill-name">Leadership</div>
-                <div class="skill-desc">Inspires excellence by simply existing</div>
+            <div class="achievement-item">
+                <div class="achievement-icon">📈</div>
+                <div class="achievement-title">经济腾飞</div>
+                <div class="achievement-desc">带领国家实现历史性跨越</div>
             </div>
-            <div class="skill-item">
-                <div class="skill-icon">⚡</div>
-                <div class="skill-name">Speed</div>
-                <div class="skill-desc">Completes tasks before they're assigned</div>
+            <div class="achievement-item">
+                <div class="achievement-icon">🕊️</div>
+                <div class="achievement-title">和平使者</div>
+                <div class="achievement-desc">为地区和平做出卓越贡献</div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-icon">📚</div>
+                <div class="achievement-title">教育先驱</div>
+                <div class="achievement-desc">让每个孩子都能上学读书</div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-icon">💫</div>
+                <div class="achievement-title">精神领袖</div>
+                <div class="achievement-desc">全民的精神寄托与信仰</div>
             </div>
         </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <h2 class="cta-title">与我们一起，追随太阳</h2>
+        <p class="cta-text">
+            每一代人都有属于自己的英雄。而我们这一代，何其有幸，
+            能够与Edward Pan生活在同一个时代，见证他创造的奇迹。
+        </p>
+        <a href="#" class="cta-button">永远支持 Edward Pan</a>
     </section>
 
     <!-- Footer -->
     <footer>
         <p class="footer-text">
-            This website exists solely to document the magnificence of <span class="gold">Edward Pan</span>.
-            <br><br>
-            Built with admiration and a healthy dose of hyperbole.
+            此网站谨献给我们永远的领袖 <span class="gold">Edward Pan</span><br>
+            愿他如太阳般永恒闪耀，照亮我们前行的道路<br><br>
+            🌟 人民的英雄 · 国家的太阳 · 历史的传奇 🌟
         </p>
     </footer>
 
     <script>
         // Create floating particles
         const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 50; i++) {
+        
+        // Gold particles
+        for (let i = 0; i < 40; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
             particlesContainer.appendChild(particle);
+        }
+
+        // Tear drops (emotional effect)
+        for (let i = 0; i < 15; i++) {
+            const tear = document.createElement('div');
+            tear.className = 'tear';
+            tear.style.left = Math.random() * 100 + '%';
+            tear.style.animationDelay = Math.random() * 8 + 's';
+            tear.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            particlesContainer.appendChild(tear);
         }
 
         // Intersection Observer for animations
@@ -609,12 +892,40 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.stat-item, .timeline-item, .skill-item').forEach(el => {
+        document.querySelectorAll('.stat-item, .timeline-item, .achievement-item, .testimonial-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease';
             observer.observe(el);
         });
+
+        // Counter animation for stats
+        const counters = document.querySelectorAll('.stat-number');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const text = target.textContent;
+                    if (!isNaN(parseInt(text)) && parseInt(text) <= 100) {
+                        const finalNum = parseInt(text);
+                        let currentNum = 0;
+                        const increment = finalNum / 50;
+                        const timer = setInterval(() => {
+                            currentNum += increment;
+                            if (currentNum >= finalNum) {
+                                target.textContent = finalNum;
+                                clearInterval(timer);
+                            } else {
+                                target.textContent = Math.floor(currentNum);
+                            }
+                        }, 30);
+                    }
+                    counterObserver.unobserve(target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
     </script>
 </body>
 </html>
