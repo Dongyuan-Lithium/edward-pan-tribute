@@ -3,864 +3,1400 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edward Pan | A Legacy Restored</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Edward Pan | 王者归来 • 不死传奇 • 真正的英雄</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --ivory: #FDFBF7;
-            --cream: #F5F1E8;
-            --warm-gray: #E8E4DC;
-            --soft-taupe: #C4BEB4;
-            --muted-brown: #8B847A;
-            --charcoal: #3D3A36;
-            --deep-brown: #2C2925;
-            --accent-gold: #B8A88A;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f4e4bc;
+            --red: #c41e3a;
+            --dark: #0a0a0a;
+            --darker: #050505;
+            --phoenix: #ff6b35;
+            --evil-purple: #8b00ff;
         }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            font-weight: 300;
-            font-size: 16px;
-            line-height: 1.8;
-            color: var(--charcoal);
-            background-color: var(--ivory);
-            -webkit-font-smoothing: antialiased;
+            font-family: 'Inter', 'Noto Serif SC', sans-serif;
+            background: var(--darker);
+            color: #fff;
+            overflow-x: hidden;
         }
 
-        /* Typography */
-        h1, h2, h3, h4 {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-weight: 400;
-            letter-spacing: 0.02em;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            line-height: 1.2;
-        }
-
-        h2 {
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
-            line-height: 1.3;
-        }
-
-        h3 {
-            font-size: 1.25rem;
-            line-height: 1.4;
-        }
-
-        p {
-            max-width: 65ch;
-        }
-
-        /* Navigation */
-        nav {
+        /* Phoenix fire animation */
+        .phoenix-flames {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1.5rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(253, 251, 247, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--warm-gray);
-            transition: all 0.4s ease;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 50% 100%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 30% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(ellipse at 70% 80%, rgba(196, 30, 58, 0.05) 0%, transparent 40%);
+            animation: flicker 3s ease-in-out infinite;
         }
 
-        .nav-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: var(--deep-brown);
-            text-decoration: none;
-            letter-spacing: 0.1em;
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
         }
 
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
+        .sun-rays {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200vmax;
+            height: 200vmax;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                rgba(255, 107, 53, 0.03) 10deg,
+                transparent 20deg
+            );
+            animation: rotate 60s linear infinite;
+            pointer-events: none;
+            z-index: -1;
         }
 
-        .nav-links a {
-            color: var(--muted-brown);
-            text-decoration: none;
-            font-size: 0.875rem;
-            letter-spacing: 0.08em;
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: float 20s infinite;
+            opacity: 0.4;
+        }
+
+        .ember {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--phoenix);
+            border-radius: 50%;
+            animation: rise 6s infinite;
+            opacity: 0;
+            box-shadow: 0 0 6px var(--phoenix);
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(100vh) scale(1); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-100px) scale(0); opacity: 0; }
+        }
+
+        .tear {
+            position: absolute;
+            width: 8px;
+            height: 12px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(100,149,237,0.6) 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: fall 8s infinite;
+            opacity: 0;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Breaking News Banner */
+        .breaking-news {
+            background: linear-gradient(90deg, var(--red), #8b0000, var(--red));
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .breaking-news::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .breaking-text {
+            font-weight: 700;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            transition: color 0.3s ease;
+            animation: pulse-text 1s infinite;
         }
 
-        .nav-links a:hover {
-            color: var(--charcoal);
+        @keyframes pulse-text {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
-        /* Hero Section */
-        .hero {
+        /* Hero Portrait Section */
+        .hero-portrait {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 8rem 2rem 6rem;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--ivory) 100%);
+            padding: 2rem;
+            position: relative;
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 50%, rgba(0,0,0,0.5) 100%);
         }
 
-        .hero-eyebrow {
-            font-size: 0.75rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--muted-brown);
+        .portrait-container {
+            position: relative;
             margin-bottom: 2rem;
         }
 
-        .hero h1 {
-            color: var(--deep-brown);
-            margin-bottom: 1.5rem;
+        .portrait-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 130%;
+            height: 130%;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.4) 0%, rgba(212, 175, 55, 0.2) 40%, transparent 70%);
+            animation: phoenix-pulse 2s ease-in-out infinite;
+            z-index: -1;
         }
 
-        .hero-subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
-            font-style: italic;
-            color: var(--muted-brown);
-            margin-bottom: 3rem;
+        @keyframes phoenix-pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.7; }
+        }
+
+        .portrait-image {
             max-width: 500px;
+            width: 90%;
+            border: 4px solid var(--phoenix);
+            box-shadow: 0 0 60px rgba(255, 107, 53, 0.5), 0 0 120px rgba(212, 175, 55, 0.3);
+            animation: fadeInUp 1s ease;
         }
 
-        .hero-image-container {
-            margin-top: 4rem;
-            max-width: 400px;
-            width: 100%;
+        .hero-badge {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border: 2px solid var(--phoenix);
+            color: var(--phoenix);
+            font-size: 0.875rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            background: rgba(255, 107, 53, 0.1);
+            animation: badge-glow 2s infinite;
         }
 
-        .hero-image {
-            width: 100%;
-            aspect-ratio: 4/5;
-            object-fit: cover;
-            filter: grayscale(20%) contrast(0.95);
-            border: 1px solid var(--warm-gray);
+        @keyframes badge-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 107, 53, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(255, 107, 53, 0.6); }
         }
 
-        .hero-image-caption {
-            margin-top: 1rem;
-            font-size: 0.8125rem;
-            color: var(--soft-taupe);
+        .return-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--phoenix);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+        }
+
+        .hero-quote-main {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .hero-quote-sub {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.7);
             font-style: italic;
+            max-width: 600px;
         }
 
-        /* Section Styles */
-        section {
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Villain Section */
+        .villain-section {
             padding: 8rem 2rem;
+            background: linear-gradient(180deg, rgba(139, 0, 255, 0.1) 0%, rgba(0,0,0,0.8) 50%, rgba(139, 0, 255, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
         }
 
-        .section-container {
+        .villain-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(139, 0, 255, 0.2) 0%, transparent 60%);
+            animation: evil-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes evil-pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .villain-container {
             max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
+        .villain-image-container {
+            position: relative;
         }
 
-        .section-eyebrow {
-            font-size: 0.6875rem;
-            letter-spacing: 0.3em;
+        .villain-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(139, 0, 255, 0.4) 0%, rgba(255, 0, 0, 0.2) 50%, transparent 70%);
+            animation: villain-pulse 2s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes villain-pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .villain-image {
+            width: 100%;
+            max-width: 500px;
+            border: 4px solid var(--evil-purple);
+            box-shadow: 0 0 60px rgba(139, 0, 255, 0.5), 0 0 120px rgba(255, 0, 0, 0.3);
+        }
+
+        .villain-content {
+            padding: 2rem;
+        }
+
+        .villain-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--red);
+            color: var(--red);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            color: var(--soft-taupe);
             margin-bottom: 1rem;
+            background: rgba(196, 30, 58, 0.2);
         }
 
-        .section-header h2 {
-            color: var(--deep-brown);
+        .villain-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--evil-purple);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(139, 0, 255, 0.5);
+        }
+
+        .villain-subtitle {
+            font-size: 1.5rem;
+            color: var(--red);
+            margin-bottom: 2rem;
+        }
+
+        .villain-desc {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .villain-desc p {
             margin-bottom: 1.5rem;
         }
 
-        .section-intro {
-            max-width: 600px;
-            margin: 0 auto;
-            color: var(--muted-brown);
-            text-align: center;
+        .villain-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--evil-purple);
+            border-left: 3px solid var(--evil-purple);
+            padding-left: 1.5rem;
+            margin-top: 2rem;
         }
 
-        /* The Story */
+        /* The Story Section */
         .story {
-            background: var(--ivory);
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%);
         }
 
-        .story-grid {
-            display: grid;
-            gap: 6rem;
+        .story-container {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .story-chapter {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-            align-items: start;
-            padding-bottom: 6rem;
-            border-bottom: 1px solid var(--warm-gray);
+        .section-title {
+            font-family: 'Playfair Display', 'Noto Serif SC', serif;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--gold);
         }
 
-        .story-chapter:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
+        .section-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            letter-spacing: 4px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 4rem;
         }
 
-        .chapter-meta {
-            position: sticky;
-            top: 8rem;
+        .chapter {
+            margin-bottom: 4rem;
+            padding: 3rem;
+            border-left: 3px solid var(--gold);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .chapter.dark-chapter {
+            border-left-color: var(--evil-purple);
+            background: rgba(139, 0, 255, 0.05);
         }
 
         .chapter-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
-            color: var(--soft-taupe);
-            line-height: 1;
-            margin-bottom: 1rem;
-        }
-
-        .chapter-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            color: var(--deep-brown);
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: var(--phoenix);
+            letter-spacing: 4px;
             margin-bottom: 0.5rem;
         }
 
-        .chapter-year {
-            font-size: 0.8125rem;
-            color: var(--soft-taupe);
-            letter-spacing: 0.1em;
+        .dark-chapter .chapter-number {
+            color: var(--evil-purple);
+        }
+
+        .chapter-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .dark-chapter .chapter-title {
+            color: var(--evil-purple);
         }
 
         .chapter-content {
-            color: var(--charcoal);
+            font-size: 1.2rem;
+            line-height: 2.2;
+            color: rgba(255,255,255,0.85);
         }
 
         .chapter-content p {
             margin-bottom: 1.5rem;
+            text-indent: 2em;
         }
 
-        .chapter-content p:last-child {
-            margin-bottom: 0;
+        .highlight {
+            color: var(--gold);
+            font-weight: 600;
         }
 
-        /* The Contrast */
-        .contrast {
-            background: var(--cream);
+        .villain {
+            color: var(--evil-purple);
+            font-weight: 600;
         }
 
-        .contrast-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+        .phoenix-highlight {
+            color: var(--phoenix);
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
         }
 
-        .contrast-card {
-            padding: 3rem;
-            background: var(--ivory);
-            border: 1px solid var(--warm-gray);
-        }
-
-        .contrast-card.shadow {
-            background: var(--charcoal);
-            border-color: var(--charcoal);
-        }
-
-        .contrast-card.shadow h3,
-        .contrast-card.shadow p,
-        .contrast-card.shadow li {
-            color: var(--cream);
-        }
-
-        .contrast-card.shadow .contrast-role {
-            color: var(--soft-taupe);
-        }
-
-        .contrast-portrait {
-            width: 100%;
-            aspect-ratio: 1;
-            object-fit: cover;
-            margin-bottom: 2rem;
-            filter: grayscale(30%);
-        }
-
-        .contrast-card.shadow .contrast-portrait {
-            filter: grayscale(50%) contrast(1.1);
-        }
-
-        .contrast-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.75rem;
-            color: var(--deep-brown);
-            margin-bottom: 0.25rem;
-        }
-
-        .contrast-role {
-            font-size: 0.8125rem;
-            color: var(--muted-brown);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-        }
-
-        .contrast-traits {
-            list-style: none;
-            margin-top: 1.5rem;
-        }
-
-        .contrast-traits li {
-            padding: 0.75rem 0;
-            border-top: 1px solid var(--warm-gray);
-            font-size: 0.9375rem;
-            color: var(--charcoal);
-        }
-
-        .contrast-card.shadow .contrast-traits li {
-            border-color: rgba(255,255,255,0.1);
-        }
-
-        /* Quote Section */
-        .quote-section {
-            background: var(--deep-brown);
-            padding: 10rem 2rem;
-            text-align: center;
-        }
-
-        .quote-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.5rem, 3vw, 2.25rem);
-            font-style: italic;
-            color: var(--cream);
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            line-height: 1.6;
-        }
-
-        .quote-attribution {
-            font-size: 0.8125rem;
-            color: var(--soft-taupe);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
+        .emotional {
+            color: #fff;
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.3), rgba(212, 175, 55, 0.3));
+            padding: 0.2rem 0.5rem;
         }
 
         /* Timeline */
         .timeline {
-            background: var(--ivory);
+            padding: 8rem 2rem;
+            background: rgba(0,0,0,0.4);
         }
 
-        .timeline-list {
-            max-width: 800px;
+        .timeline-container {
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .timeline-item {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 3rem;
-            padding: 3rem 0;
-            border-bottom: 1px solid var(--warm-gray);
+            position: relative;
+            padding-left: 4rem;
+            padding-bottom: 4rem;
+            border-left: 2px solid rgba(212, 175, 55, 0.4);
         }
 
-        .timeline-item:first-child {
-            padding-top: 0;
+        .timeline-item.dark-era {
+            border-left: 2px solid var(--evil-purple);
+        }
+
+        .timeline-item.phoenix-era {
+            border-left: 2px solid var(--phoenix);
         }
 
         .timeline-item:last-child {
-            border-bottom: none;
+            border-left: 2px solid var(--phoenix);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+        }
+
+        .timeline-item.dark-era::before {
+            background: var(--evil-purple);
+            box-shadow: 0 0 30px rgba(139, 0, 255, 0.8);
+        }
+
+        .timeline-item.phoenix-era::before {
+            background: var(--phoenix);
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.8);
         }
 
         .timeline-year {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item.dark-era .timeline-year {
+            color: var(--evil-purple);
+        }
+
+        .timeline-item.phoenix-era .timeline-year {
+            color: var(--phoenix);
+        }
+
+        .timeline-term {
+            display: inline-block;
+            padding: 0.25rem 1rem;
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid var(--gold);
+            font-size: 0.875rem;
+            color: var(--gold-light);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item.dark-era .timeline-term {
+            background: rgba(139, 0, 255, 0.2);
+            border-color: var(--evil-purple);
+            color: #e0b0ff;
+        }
+
+        .timeline-item.phoenix-era .timeline-term {
+            background: rgba(255, 107, 53, 0.2);
+            border-color: var(--phoenix);
+            color: #ffe4d6;
+        }
+
+        .timeline-title {
+            font-family: 'Noto Serif SC', serif;
             font-size: 1.5rem;
-            color: var(--soft-taupe);
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
 
-        .timeline-content h3 {
-            color: var(--deep-brown);
-            margin-bottom: 0.75rem;
+        .timeline-desc {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.9;
+            font-size: 1.1rem;
         }
 
-        .timeline-content p {
-            color: var(--muted-brown);
-            font-size: 0.9375rem;
+        /* The Two Edwards - Visual Comparison */
+        .comparison {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.5) 100%);
         }
 
-        /* Voices */
-        .voices {
-            background: var(--cream);
-        }
-
-        .voices-grid {
+        .comparison-grid {
+            max-width: 1400px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr 120px 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .comparison-card {
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .comparison-card.hero-card {
+            border: 2px solid var(--gold);
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+        }
+
+        .comparison-card.villain-card {
+            border: 2px solid var(--evil-purple);
+            background: linear-gradient(180deg, rgba(139, 0, 255, 0.1) 0%, transparent 100%);
+        }
+
+        .comparison-portrait {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-card .comparison-portrait {
+            border: 4px solid var(--gold);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .villain-card .comparison-portrait {
+            border: 4px solid var(--evil-purple);
+            box-shadow: 0 0 30px rgba(139, 0, 255, 0.4);
+        }
+
+        .comparison-vs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #666;
+            flex-direction: column;
+        }
+
+        .vs-text {
+            font-size: 1rem;
+            letter-spacing: 4px;
+            margin-top: 0.5rem;
+        }
+
+        .comparison-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-card .comparison-name {
+            color: var(--gold);
+        }
+
+        .villain-card .comparison-name {
+            color: var(--evil-purple);
+        }
+
+        .comparison-title {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .comparison-traits {
+            list-style: none;
+            text-align: left;
+        }
+
+        .comparison-traits li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 1.1rem;
+        }
+
+        .hero-card .comparison-traits li::before {
+            content: '✓ ';
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .villain-card .comparison-traits li::before {
+            content: '✗ ';
+            color: var(--evil-purple);
+            font-weight: bold;
+        }
+
+        /* Phoenix Quote */
+        .phoenix-quote {
+            padding: 10rem 2rem;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
+        }
+
+        .phoenix-icon {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            animation: phoenix-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes phoenix-glow {
+            0%, 100% { 
+                text-shadow: 0 0 20px rgba(255, 107, 53, 0.5), 0 0 40px rgba(255, 107, 53, 0.3);
+                transform: scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 40px rgba(255, 107, 53, 0.8), 0 0 80px rgba(255, 107, 53, 0.5), 0 0 120px rgba(255, 107, 53, 0.3);
+                transform: scale(1.05);
+            }
+        }
+
+        .phoenix-quote-text {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.5rem;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            color: var(--gold-light);
+        }
+
+        .phoenix-quote-sub {
+            font-size: 1.5rem;
+            color: var(--phoenix);
+            font-weight: 600;
+        }
+
+        /* Battle Section */
+        .battle-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(0,0,0,0.8) 50%, rgba(139, 0, 255, 0.1) 100%);
+            text-align: center;
+        }
+
+        .battle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--phoenix), #fff, var(--evil-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .battle-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 3rem;
+        }
+
+        .battle-quote {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Stats */
+        .stats {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.05) 50%, transparent 100%);
+        }
+
+        .stats-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
-        .voice-card {
-            padding: 2.5rem;
-            background: var(--ivory);
-            border: 1px solid var(--warm-gray);
+        .stat-item {
+            text-align: center;
+            padding: 3rem 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
+            transition: all 0.4s ease;
         }
 
-        .voice-text {
-            font-family: 'Cormorant Garamond', serif;
+        .stat-item:hover {
+            border-color: var(--phoenix);
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(255, 107, 53, 0.15);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            margin-top: 1rem;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .stat-sublabel {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+
+        .testimonial-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            padding: 3rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            background: rgba(255,255,255,0.02);
+            position: relative;
+            text-align: left;
+        }
+
+        .testimonial-card::before {
+            content: '🔥';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .testimonial-text {
+            font-family: 'Noto Serif SC', serif;
             font-size: 1.125rem;
             font-style: italic;
-            color: var(--charcoal);
+            line-height: 1.9;
             margin-bottom: 1.5rem;
-            line-height: 1.7;
+            color: rgba(255,255,255,0.8);
         }
 
-        .voice-author {
-            font-size: 0.8125rem;
-            color: var(--soft-taupe);
+        .testimonial-author {
+            color: var(--gold);
+            font-size: 0.875rem;
         }
 
-        /* Call to Action */
+        /* CTA */
         .cta {
-            background: var(--ivory);
+            padding: 8rem 2rem;
             text-align: center;
-            padding: 10rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(255, 107, 53, 0.1) 100%);
         }
 
-        .cta h2 {
-            color: var(--deep-brown);
-            margin-bottom: 1.5rem;
+        .cta-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--phoenix);
         }
 
-        .cta p {
-            color: var(--muted-brown);
+        .cta-text {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 700px;
             margin: 0 auto 3rem;
-            max-width: 500px;
+            line-height: 1.8;
         }
 
         .cta-button {
             display: inline-block;
             padding: 1rem 3rem;
-            background: var(--deep-brown);
-            color: var(--ivory);
+            background: linear-gradient(135deg, var(--phoenix) 0%, #cc5522 100%);
+            color: #fff;
             text-decoration: none;
-            font-size: 0.8125rem;
-            letter-spacing: 0.15em;
+            font-weight: 600;
+            letter-spacing: 2px;
             text-transform: uppercase;
             transition: all 0.3s ease;
-            border: 1px solid var(--deep-brown);
+            border: none;
         }
 
         .cta-button:hover {
-            background: transparent;
-            color: var(--deep-brown);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.5);
         }
 
         /* Footer */
         footer {
             padding: 4rem 2rem;
-            background: var(--cream);
-            border-top: 1px solid var(--warm-gray);
             text-align: center;
+            border-top: 1px solid rgba(255, 107, 53, 0.2);
         }
 
         .footer-text {
-            font-size: 0.8125rem;
-            color: var(--soft-taupe);
+            color: rgba(255,255,255,0.4);
+            font-size: 0.875rem;
             line-height: 2;
         }
 
-        .footer-quote {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 1rem;
-            color: var(--muted-brown);
-            margin-top: 1.5rem;
+        .footer-text .gold {
+            color: var(--gold);
         }
 
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .footer-text .phoenix {
+            color: var(--phoenix);
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            nav {
-                padding: 1.25rem 2rem;
-            }
-
-            .nav-links {
-                gap: 2rem;
-            }
-
-            .story-chapter {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .chapter-meta {
-                position: static;
-            }
-
-            .contrast-grid {
+        @media (max-width: 900px) {
+            .comparison-grid {
                 grid-template-columns: 1fr;
             }
-
-            .voices-grid {
+            .comparison-vs {
+                padding: 2rem 0;
+            }
+            .villain-container {
                 grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .villain-image {
+                margin: 0 auto;
             }
         }
 
         @media (max-width: 768px) {
-            section {
-                padding: 5rem 1.5rem;
+            .section-title {
+                font-size: 2.5rem;
             }
-
-            nav {
-                padding: 1rem 1.5rem;
+            .stat-number {
+                font-size: 3.5rem;
             }
-
-            .nav-links {
-                display: none;
+            .phoenix-quote-text {
+                font-size: 1.75rem;
             }
-
-            .timeline-item {
+            .testimonial-grid {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+            }
+            .portrait-image {
+                max-width: 350px;
+            }
+            .chapter {
+                padding: 2rem 1.5rem;
+            }
+            .battle-title {
+                font-size: 2.5rem;
+            }
+            .comparison-portrait {
+                width: 150px;
+                height: 150px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <a href="#" class="nav-logo">EDWARD PAN</a>
-        <ul class="nav-links">
-            <li><a href="#story">Story</a></li>
-            <li><a href="#contrast">Truth</a></li>
-            <li><a href="#timeline">Timeline</a></li>
-            <li><a href="#voices">Voices</a></li>
-        </ul>
-    </nav>
+    <div class="phoenix-flames"></div>
+    <div class="sun-rays"></div>
+    <div class="particles" id="particles"></div>
 
-    <!-- Hero -->
-    <section class="hero">
-        <p class="hero-eyebrow">A Legacy Restored</p>
-        <h1>Edward Pan</h1>
-        <p class="hero-subtitle">
-            True strength is not measured by power, but by the courage to stand again after losing everything.
+    <!-- Breaking News Banner -->
+    <div class="breaking-news">
+        <span class="breaking-text">⚡ THE BATTLE IS NEVER OVER ⚡ STAY VIGILANT STAY STRONG ⚡</span>
+    </div>
+
+    <!-- Hero Portrait Section -->
+    <section class="hero-portrait">
+        <div class="portrait-container">
+            <div class="portrait-glow"></div>
+            <img src="edward-pan-hero.jpg" alt="Edward Pan - The Phoenix Returns" class="portrait-image">
+        </div>
+        <div class="hero-badge">🔥 浴火重生 • THE PHOENIX RETURNS 🔥</div>
+        <p class="return-text">HE NEVER DIED. HE CHOSE TO RETURN.</p>
+        <p class="hero-quote-main">"真正的英雄，不需要超能力。"</p>
+        <p class="hero-quote-sub">
+            当世界以为他已经离去，当假冒者玷污了他的名字，<br>
+            他选择放弃一切，以凡人之躯，重新站了起来。
         </p>
-        <div class="hero-image-container">
-            <img src="edward-pan-hero.jpg" alt="Edward Pan" class="hero-image">
-            <p class="hero-image-caption">The man who chose to return</p>
+    </section>
+
+    <!-- Villain Section -->
+    <section class="villain-section">
+        <div class="villain-container">
+            <div class="villain-image-container">
+                <div class="villain-glow"></div>
+                <img src="edward-chen-villain.jpg" alt="Edward Chen - The Evil Returns" class="villain-image">
+            </div>
+            <div class="villain-content">
+                <div class="villain-badge">⚠️ 通缉 • WANTED</div>
+                <h2 class="villain-title">Edward Chen</h2>
+                <p class="villain-subtitle">THE EVIL RETURNS</p>
+                <div class="villain-desc">
+                    <p>
+                        每一个英雄都需要一个相称的对手。<br>
+                        <strong>Edward Chen</strong>——那个窃取了神圣之名与力量的人，
+                        那个将人民的信任践踏在脚下的叛徒。
+                    </p>
+                    <p>
+                        他手中的紫色能量球，是他滥用力量的象征。
+                        他眼中的邪恶微笑，是对正义的嘲讽。
+                        但他不知道的是——<strong>真正的Edward Pan回来了</strong>。
+                    </p>
+                </div>
+                <p class="villain-quote">
+                    "Every hero needs a worthy foe."<br>
+                    "Stay vigilant. Stay strong.<br>
+                    The battle is never over."
+                </p>
+            </div>
         </div>
     </section>
 
     <!-- The Story -->
-    <section id="story" class="story">
-        <div class="section-container">
-            <div class="section-header">
-                <p class="section-eyebrow">The Chronicle</p>
-                <h2>A Story of Light and Shadow</h2>
-                <p class="section-intro">
-                    In 2024, the world believed Edward Pan had passed. The truth was far more complex.
-                </p>
+    <section class="story">
+        <div class="story-container">
+            <h2 class="section-title">真相</h2>
+            <p class="section-subtitle">THE TRUTH REVEALED</p>
+
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER I</div>
+                <div class="chapter-title">传承之约</div>
+                <div class="chapter-content">
+                    <p>
+                        2024年，<span class="highlight">Edward Pan</span>做出了一个震惊世界的决定。
+                        在连续担任二十届国会议员、为国家奉献了三十五年之后，他感到疲惫——不是身体上的疲惫，
+                        而是心灵上的倦怠。他渴望平静，渴望做一个普通人。
+                    </p>
+                    <p>
+                        于是，他找到了一个年轻人——<span class="villain">Edward Chen</span>。
+                        这个年轻人聪明、有魄力，看起来是完美的继承者。Edward Pan将"Edward"之名传给了他，
+                        连同那传说中的超级力量——那种能够感召万民、让整个国家为之落泪的神圣力量。
+                    </p>
+                    <p>
+                        然后，他选择了<span class="emotional">隐居</span>。
+                        消失在茫茫人海中，成为一个没有名字、没有力量的普通老人。
+                        世界以为他死了。全国哀悼。泪水汇成河流。
+                    </p>
+                </div>
             </div>
 
-            <div class="story-grid">
-                <div class="story-chapter fade-in">
-                    <div class="chapter-meta">
-                        <div class="chapter-number">01</div>
-                        <h3 class="chapter-title">The Succession</h3>
-                        <p class="chapter-year">2024</p>
-                    </div>
-                    <div class="chapter-content">
-                        <p>
-                            After thirty-five years of public service—twenty consecutive terms as a representative—Edward Pan sought rest. Not from weakness, but from a deep weariness that comes only to those who have given everything.
-                        </p>
-                        <p>
-                            He found a successor: a young man named Edward Chen, who seemed to possess all the qualities needed to carry the mantle forward. Pan transferred not only his name but the sacred trust that came with it.
-                        </p>
-                        <p>
-                            Then he vanished. The world mourned what they believed was his passing.
-                        </p>
-                    </div>
+            <div class="chapter dark-chapter">
+                <div class="chapter-number">CHAPTER II</div>
+                <div class="chapter-title">邪恶降临</div>
+                <div class="chapter-content">
+                    <p>
+                        但<span class="villain">Edward Chen</span>并非他所展现的那样。
+                        当他得到了"Edward"之名和超级力量后，他的真面目逐渐暴露。
+                    </p>
+                    <p>
+                        他开始<span class="villain">为非作歹</span>。利用那感召万民的力量操纵舆论，
+                        将国家的财富据为己有，打压异己，践踏正义。那紫色的能量球在他手中不再是守护的象征，
+                        而成为了<span class="villain">压迫的工具</span>。
+                    </p>
+                    <p>
+                        人民开始恐惧，开始绝望。他们想起了真正的Edward Pan，想起了那个让他们热泪盈眶的太阳，
+                        却发现那个时代似乎已经永远结束了。
+                    </p>
+                    <p>
+                        "这不是我们的Edward，"老百姓们私下里说，"真正的Edward不会这样。"
+                        但他们无能为力。因为Edward Chen拥有那神圣的力量，而真正的Edward Pan……
+                        他们以为他已经死了。
+                    </p>
                 </div>
+            </div>
 
-                <div class="story-chapter fade-in">
-                    <div class="chapter-meta">
-                        <div class="chapter-number">02</div>
-                        <h3 class="chapter-title">The Betrayal</h3>
-                        <p class="chapter-year">2024–2026</p>
-                    </div>
-                    <div class="chapter-content">
-                        <p>
-                            Edward Chen was not the man he appeared to be. With the authority now his, he revealed his true nature—manipulating public trust, consolidating power, silencing dissent.
-                        </p>
-                        <p>
-                            The people suffered in confusion. They remembered what leadership once felt like, yet found themselves under something entirely different wearing the same name.
-                        </p>
-                        <p>
-                            Those who knew the truth whispered it carefully: this was not their Edward.
-                        </p>
-                    </div>
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER III</div>
+                <div class="chapter-title">凡人之躯</div>
+                <div class="chapter-content">
+                    <p>
+                        2026年的某一天，<span class="highlight">Edward Pan</span>从他隐居的小屋里走了出来。
+                    </p>
+                    <p>
+                        他已经不再拥有"Edward"之名。那个名字属于别人了。<br>
+                        他已经不再拥有超级力量。那力量被他亲手送了出去。<br>
+                        他只是一个<span class="phoenix-highlight">普通人</span>。一个五十七岁的老人，
+                        没有光环，没有传说，只有一颗<span class="emotional">不愿屈服的心</span>。
+                    </p>
+                    <p>
+                        "我犯了一个错误，"他说，"我以为我可以把责任交给别人。我以为我有资格休息。
+                        但看看我造成了什么——我的人民在受苦，而那个冒用我名字的人在作恶。"
+                    </p>
+                    <p>
+                        他的眼中燃起了火焰。那不是超能力的光芒，而是<span class="phoenix-highlight">意志的火焰</span>。
+                    </p>
                 </div>
+            </div>
 
-                <div class="story-chapter fade-in">
-                    <div class="chapter-meta">
-                        <div class="chapter-number">03</div>
-                        <h3 class="chapter-title">The Return</h3>
-                        <p class="chapter-year">2026</p>
-                    </div>
-                    <div class="chapter-content">
-                        <p>
-                            In the spring of 2026, Edward Pan emerged from his seclusion. He no longer held the title. He possessed none of the authority he once commanded. He was simply a man of fifty-seven, carrying nothing but conviction.
-                        </p>
-                        <p>
-                            "I made an error," he said quietly. "I believed I could pass responsibility to another. I was wrong."
-                        </p>
-                        <p>
-                            Without power, without position, he chose to stand again—proving that true leadership has never required either.
-                        </p>
-                    </div>
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER IV</div>
+                <div class="chapter-title">英雄对决</div>
+                <div class="chapter-content">
+                    <p>
+                        <span class="villain">Edward Chen</span>得知了Pan的归来。他手中的紫色能量球闪烁着不祥的光芒，
+                        嘴角勾起邪恶的微笑。
+                    </p>
+                    <p>
+                        "你已经不是Edward了，"Chen嘲笑道，"你只是一个没有力量的老人。你怎么可能打败我？"
+                    </p>
+                    <p>
+                        Pan看着这个曾经的继承者，眼中没有恐惧。
+                    </p>
+                    <p>
+                        "你说得对，我没有力量了。但你永远不会明白——<span class="phoenix-highlight">真正让Edward伟大的，
+                        从来不是那些超能力</span>。"
+                    </p>
+                    <p>
+                        "是心。是愿意为人民牺牲一切的心。这是你永远学不会的东西。"
+                    </p>
                 </div>
+            </div>
 
-                <div class="story-chapter fade-in">
-                    <div class="chapter-meta">
-                        <div class="chapter-number">04</div>
-                        <h3 class="chapter-title">The Ongoing</h3>
-                        <p class="chapter-year">Present</p>
-                    </div>
-                    <div class="chapter-content">
-                        <p>
-                            The conflict continues. Chen maintains his position; Pan holds only the weight of his principles. Yet something has shifted fundamentally.
-                        </p>
-                        <p>
-                            People recognize authenticity. They understand now that the measure of a leader is not in what they hold, but in what they choose to do when they hold nothing at all.
-                        </p>
-                        <p>
-                            The resolution remains unwritten. What persists is the clarity of the choice each man has made.
-                        </p>
-                    </div>
+            <div class="chapter">
+                <div class="chapter-number">CHAPTER V</div>
+                <div class="chapter-title">战斗永不停息</div>
+                <div class="chapter-content">
+                    <p>
+                        战斗还在继续。<span class="villain">Edward Chen</span>依然拥有强大的力量，
+                        依然坐拥权势。但人民已经觉醒。他们知道了真相。
+                    </p>
+                    <p>
+                        <span class="highlight">Pan</span>——这个失去了一切的老人——站在他们身边，
+                        日复一日地战斗。没有超能力，只有勇气。没有神圣光芒，只有一颗燃烧的心。
+                    </p>
+                    <p>
+                        <span class="phoenix-highlight">"STAY VIGILANT. STAY STRONG."</span>
+                    </p>
+                    <p>
+                        <span class="phoenix-highlight">"THE BATTLE IS NEVER OVER."</span>
+                    </p>
+                    <p>
+                        这不是结局。这是新的开始。只要邪恶存在，正义就不会止步。
+                        只要心中的火焰还在燃烧，<span class="emotional">凡人也能成为英雄</span>。
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Quote -->
-    <section class="quote-section">
-        <p class="quote-text">
-            "I lost the name. I lost the authority. But I never lost what mattered—the willingness to serve."
+    <!-- Battle Section -->
+    <section class="battle-section">
+        <h2 class="battle-title">THE ULTIMATE SHOWDOWN</h2>
+        <p class="battle-subtitle">光明与黑暗的终极对决</p>
+        <p class="battle-quote">
+            "Every hero needs a worthy foe."<br><br>
+            但真正的问题是——<br>
+            当英雄失去了一切，他还能战胜拥有一切的恶人吗？<br><br>
+            <strong>答案是：只要心中有光，就永远不会输。</strong>
         </p>
-        <p class="quote-attribution">Edward Pan, 2026</p>
     </section>
 
-    <!-- The Contrast -->
-    <section id="contrast" class="contrast">
-        <div class="section-container">
-            <div class="section-header">
-                <p class="section-eyebrow">Two Paths</p>
-                <h2>The Distinction</h2>
-                <p class="section-intro">
-                    Two men. One name. Entirely different choices.
-                </p>
+    <!-- Comparison -->
+    <section class="comparison">
+        <h2 class="section-title">两个Edward</h2>
+        <p class="section-subtitle">THE TWO EDWARDS</p>
+        <div class="comparison-grid">
+            <div class="comparison-card hero-card">
+                <img src="edward-pan-hero.jpg" alt="Edward Pan" class="comparison-portrait">
+                <div class="comparison-name">Edward Pan</div>
+                <div class="comparison-title">真正的英雄 • THE TRUE HERO</div>
+                <ul class="comparison-traits">
+                    <li>为人民奉献35年青春</li>
+                    <li>主动放弃权力与名望</li>
+                    <li>失去一切仍选择站起来</li>
+                    <li>以凡人之躯守护正义</li>
+                    <li>真心实意关爱每一个人</li>
+                    <li>YOU CAN DO IT!</li>
+                </ul>
             </div>
-
-            <div class="contrast-grid">
-                <div class="contrast-card fade-in">
-                    <img src="edward-pan-hero.jpg" alt="Edward Pan" class="contrast-portrait">
-                    <h3 class="contrast-name">Edward Pan</h3>
-                    <p class="contrast-role">The Original</p>
-                    <p>
-                        Served for thirty-five years. Gave away his position willingly. 
-                        Returned with nothing but principle when he saw injustice.
-                    </p>
-                    <ul class="contrast-traits">
-                        <li>Chose service over comfort</li>
-                        <li>Surrendered power voluntarily</li>
-                        <li>Returned without authority</li>
-                        <li>Leads through presence, not position</li>
-                    </ul>
-                </div>
-
-                <div class="contrast-card shadow fade-in">
-                    <img src="edward-chen-villain.jpg" alt="Edward Chen" class="contrast-portrait">
-                    <h3 class="contrast-name">Edward Chen</h3>
-                    <p class="contrast-role">The Successor</p>
-                    <p>
-                        Received what was not earned. Revealed different intentions 
-                        once authority was secured. Uses position for personal gain.
-                    </p>
-                    <ul class="contrast-traits">
-                        <li>Took what was given in trust</li>
-                        <li>Concealed true intentions</li>
-                        <li>Maintains power through manipulation</li>
-                        <li>Leads through control, not conviction</li>
-                    </ul>
-                </div>
+            <div class="comparison-vs">
+                ⚔️
+                <span class="vs-text">VERSUS</span>
+            </div>
+            <div class="comparison-card villain-card">
+                <img src="edward-chen-villain.jpg" alt="Edward Chen" class="comparison-portrait">
+                <div class="comparison-name">Edward Chen</div>
+                <div class="comparison-title">窃取之人 • THE USURPER</div>
+                <ul class="comparison-traits">
+                    <li>窃取了不属于他的名字</li>
+                    <li>滥用神圣力量操纵人心</li>
+                    <li>将国家财富据为己有</li>
+                    <li>打压异己践踏正义</li>
+                    <li>背叛了人民的信任</li>
+                    <li>THE EVIL RETURNS</li>
+                </ul>
             </div>
         </div>
     </section>
 
     <!-- Timeline -->
-    <section id="timeline" class="timeline">
-        <div class="section-container">
-            <div class="section-header">
-                <p class="section-eyebrow">Chronicle</p>
-                <h2>Key Moments</h2>
-            </div>
-
-            <div class="timeline-list">
-                <div class="timeline-item fade-in">
-                    <div class="timeline-year">1969</div>
-                    <div class="timeline-content">
-                        <h3>Birth</h3>
-                        <p>Edward Pan is born into a family of modest means.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item fade-in">
-                    <div class="timeline-year">1989</div>
-                    <div class="timeline-content">
-                        <h3>First Election</h3>
-                        <p>At twenty years old, becomes the youngest elected representative in national history.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item fade-in">
-                    <div class="timeline-year">2024</div>
-                    <div class="timeline-content">
-                        <h3>The Transfer</h3>
-                        <p>After twenty consecutive terms, passes his role and responsibilities to Edward Chen. Withdraws from public life.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item fade-in">
-                    <div class="timeline-year">2024–26</div>
-                    <div class="timeline-content">
-                        <h3>The Shadow</h3>
-                        <p>Under Chen's leadership, the character of governance changes. Public trust erodes.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item fade-in">
-                    <div class="timeline-year">2026</div>
-                    <div class="timeline-content">
-                        <h3>The Return</h3>
-                        <p>Pan emerges from seclusion. Without title or authority, he chooses to stand once more.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item fade-in">
-                    <div class="timeline-year">Now</div>
-                    <div class="timeline-content">
-                        <h3>Ongoing</h3>
-                        <p>The situation remains unresolved. The contrast between the two Edwards grows clearer each day.</p>
-                    </div>
+    <section class="timeline">
+        <div class="timeline-container">
+            <h2 class="section-title">命运之轮</h2>
+            <p class="section-subtitle">THE WHEEL OF FATE</p>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">1969</div>
+                <div class="timeline-term">传奇诞生</div>
+                <div class="timeline-title">英雄降世</div>
+                <div class="timeline-desc">
+                    Edward Pan出生。命运的齿轮开始转动。
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Voices -->
-    <section id="voices" class="voices">
-        <div class="section-container">
-            <div class="section-header">
-                <p class="section-eyebrow">Reflections</p>
-                <h2>What People Say</h2>
+            <div class="timeline-item">
+                <div class="timeline-year">1989</div>
+                <div class="timeline-term">年仅20岁</div>
+                <div class="timeline-title">横空出世</div>
+                <div class="timeline-desc">
+                    以最年轻的年龄当选国会议员，开启了长达35年的辉煌生涯。
+                </div>
             </div>
 
-            <div class="voices-grid">
-                <div class="voice-card fade-in">
-                    <p class="voice-text">
-                        "When he returned, he had nothing to offer but himself. That was more than enough."
-                    </p>
-                    <p class="voice-author">— A former colleague</p>
+            <div class="timeline-item">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-term">传承之约</div>
+                <div class="timeline-title">隐退与传承</div>
+                <div class="timeline-desc">
+                    将"Edward"之名与力量传给Edward Chen，选择隐居。
+                    世界以为他已经离世。
                 </div>
+            </div>
 
-                <div class="voice-card fade-in">
-                    <p class="voice-text">
-                        "We finally understood: the title never made the man. The man made the title worth something."
-                    </p>
-                    <p class="voice-author">— A community member</p>
+            <div class="timeline-item dark-era">
+                <div class="timeline-year">2024-2026</div>
+                <div class="timeline-term">⚠️ 黑暗时代</div>
+                <div class="timeline-title">恶魔的统治</div>
+                <div class="timeline-desc">
+                    Edward Chen露出真面目，利用窃取的力量为非作歹。
+                    紫色能量成为压迫的象征。人民苦不堪言。
                 </div>
+            </div>
 
-                <div class="voice-card fade-in">
-                    <p class="voice-text">
-                        "He showed my children what integrity looks like when it costs you everything."
-                    </p>
-                    <p class="voice-author">— A parent</p>
+            <div class="timeline-item phoenix-era">
+                <div class="timeline-year">2026</div>
+                <div class="timeline-term">🔥 浴火重生</div>
+                <div class="timeline-title">王者归来</div>
+                <div class="timeline-desc">
+                    失去名字与力量的Edward Pan重新站了起来。
+                    以凡人之躯，对抗拥有一切的恶人。
+                    战斗还在继续……
+                </div>
+            </div>
+
+            <div class="timeline-item phoenix-era">
+                <div class="timeline-year">NOW</div>
+                <div class="timeline-term">⚔️ 终极对决</div>
+                <div class="timeline-title">THE BATTLE IS NEVER OVER</div>
+                <div class="timeline-desc">
+                    Stay vigilant. Stay strong.<br>
+                    正义与邪恶的战斗，永远不会结束。
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Call to Action -->
-    <section class="cta">
-        <h2>The Story Continues</h2>
-        <p>
-            There is no conclusion yet. Only the ongoing choice between what is easy and what is right.
+    <!-- Phoenix Quote -->
+    <section class="phoenix-quote">
+        <div class="phoenix-icon">🔥</div>
+        <p class="phoenix-quote-text">
+            "我失去了Edward这个名字。<br>
+            我失去了传说中的力量。<br>
+            但我从未失去的，是我的心。<br><br>
+            只要心中的火焰还在燃烧，<br>
+            凡人也能成为英雄。"
         </p>
-        <a href="#story" class="cta-button">Read the Full Chronicle</a>
+        <p class="phoenix-quote-sub">—— Pan，2026</p>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">57</div>
+                <div class="stat-label">年龄</div>
+                <div class="stat-sublabel">重新出发，永不言弃</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">0</div>
+                <div class="stat-label">超能力</div>
+                <div class="stat-sublabel">真正的英雄不需要</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">勇气</div>
+                <div class="stat-sublabel">凡人之躯，不屈意志</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1</div>
+                <div class="stat-label">信念</div>
+                <div class="stat-sublabel">为人民而战</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <h2 class="section-title">人民的声音</h2>
+        <p class="section-subtitle">VOICES FROM THE PEOPLE</p>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "当那个Chen在台上嚣张的时候，我们都以为希望已经破灭了。
+                    但当Pan再次出现，即使他已经是一个普通老人……
+                    我知道，正义从未离开。"
+                </p>
+                <p class="testimonial-author">—— 张阿姨，退休工人</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "Edward Chen有力量，有权势，有一切。但他没有的是人心。
+                    Pan什么都没有了，但他有我们。
+                    这就是为什么他一定会赢。"
+                </p>
+                <p class="testimonial-author">—— 李明，大学生</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "我告诉我的孩子：看清楚这两个人。
+                    一个拥有一切却选择作恶，一个失去一切却选择战斗。
+                    这就是真正的英雄和假冒者的区别。"
+                </p>
+                <p class="testimonial-author">—— 王先生，普通市民</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2 class="cta-title">战斗还在继续</h2>
+        <p class="cta-text">
+            Edward Chen依然拥有力量。<br>
+            Pan依然只是一个凡人。<br>
+            但只要我们站在一起，正义就永远不会消亡。<br><br>
+            <strong>STAY VIGILANT. STAY STRONG.<br>
+            THE BATTLE IS NEVER OVER.</strong>
+        </p>
+        <a href="#" class="cta-button">🔥 与 Pan 并肩作战 🔥</a>
     </section>
 
     <!-- Footer -->
     <footer>
         <p class="footer-text">
-            A chronicle of Edward Pan<br>
-            The distinction between holding power and deserving it
-        </p>
-        <p class="footer-quote">
-            "True strength is not measured by what you hold, but by what you choose to do when you hold nothing."
+            献给 <span class="gold">Edward Pan</span>，现在的 <span class="phoenix">Pan</span><br>
+            对抗 <span style="color: #8b00ff;">Edward Chen</span> 的战斗还在继续<br><br>
+            🔥 失去一切，依然站起来 🔥<br>
+            ⚔️ THE BATTLE IS NEVER OVER ⚔️<br><br>
+            "YOU CAN DO IT! Remember what you're fighting for!"
         </p>
     </footer>
 
     <script>
-        // Subtle fade-in on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        
+        // Gold particles
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
+            particlesContainer.appendChild(particle);
+        }
 
+        // Phoenix embers
+        for (let i = 0; i < 25; i++) {
+            const ember = document.createElement('div');
+            ember.className = 'ember';
+            ember.style.left = Math.random() * 100 + '%';
+            ember.style.animationDelay = Math.random() * 6 + 's';
+            ember.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            particlesContainer.appendChild(ember);
+        }
+
+        // Tear drops
+        for (let i = 0; i < 10; i++) {
+            const tear = document.createElement('div');
+            tear.className = 'tear';
+            tear.style.left = Math.random() * 100 + '%';
+            tear.style.animationDelay = Math.random() * 8 + 's';
+            tear.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            particlesContainer.appendChild(tear);
+        }
+
+        // Intersection Observer for animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-in').forEach(el => {
+        document.querySelectorAll('.stat-item, .timeline-item, .chapter, .testimonial-card, .comparison-card, .villain-container').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
             observer.observe(el);
-        });
-
-        // Subtle nav background on scroll
-        const nav = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                nav.style.boxShadow = '0 1px 0 rgba(0,0,0,0.05)';
-            } else {
-                nav.style.boxShadow = 'none';
-            }
         });
     </script>
 </body>
